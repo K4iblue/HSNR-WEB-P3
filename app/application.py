@@ -13,10 +13,6 @@ class Application:
     default.expose = True
 
     @cherrypy.expose
-    def index(self):
-        return
-
-    @cherrypy.expose
     def editEmployees(self):
         return
 

@@ -7,29 +7,52 @@
   <body>
     <header>
       <div class="box">
-        <p>Mitarbeiterqualifizierung</p>
-        <p>Version xx / xx.xx.xxxx</p>
-      </div>
-      <div class="box">
-        Team: Erik Simon | Gordon Goldbach
+        <div>
+          <h1>Mitarbeiterqualifizierung - <%block name="title"/></h1>
+          <p>Version 1.0 / 25.11.2020</p>
+        </div>
+        <div>
+          <code>
+            Erik Simon (1049804)
+            <br/>
+            Gordon Goldbach (1290002)
+          </code>
+        </div>
       </div>
     </header>
     <nav>
       <div class="box">
-        <a href="/">Startseite</a>
+        <ul>
+          <li><a href="/">Startseite</a></li>
+        </ul>
       </div>
       <div class="box">
-        <a href="/edit-employees">Pflege Mitarbeiterdaten</a>
-        <a href="/edit-trainings">Pflege Weiterbildungen</a>
+        <span class="nav-headline">
+          Pflege
+        </span>
+        <ul>
+          <li><a href="/edit-employees">Pflege Mitarbeiterdaten</a></li>
+          <li><a href="/edit-trainings">Pflege Weiterbildungen</a></li>
+        </ul>
       </div>
       <div class="box">
-        <a href="/participation-employees">Sichtweise Mitarbeiter</a>
-        <a href="/participation-trainings">Sichtweise Weiterbildungen</a>
+        <span class="nav-headline">
+          Teilnahme
+        </span>
+        <ul>
+          <li><a href="/participation-employees">Sichtweise Mitarbeiter</a></li>
+          <li><a href="/participation-trainings">Sichtweise Weiterbildungen</a></li>
+        </ul>
       </div>
       <div class="box">
-        <a href="/report-employees">Auswertung Mitarbeiter</a>
-        <a href="/report-trainings">Auswertung Weiterbildungen</a>
-        <a href="/report-certificates">Auswertung Zertifikate</a>
+        <span class="nav-headline">
+          Auswertungen
+        </span>
+        <ul>
+          <li><a href="/report-employees">Auswertung Mitarbeiter</a></li>
+          <li><a href="/report-trainings">Auswertung Weiterbildungen</a></li>
+          <li><a href="/report-certificates">Auswertung Zertifikate</a></li>
+        </ul>
       </div>
     </nav>
     <main>
