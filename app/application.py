@@ -1,7 +1,7 @@
 # coding: utf-8
 import cherrypy
 
-class Application():
+class Application:
     @cherrypy.expose
     def default(self):
         raise cherrypy.HTTPError(404)
