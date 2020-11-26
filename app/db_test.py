@@ -1,7 +1,8 @@
 # coding: utf-8
 import cherrypy
+from .model.employee import Employee
 
-from . import database
+from .db import database
 
 class DBTest:
 
@@ -11,11 +12,8 @@ class DBTest:
     default.expose = True
 
     @cherrypy.expose
-    def index(self):
-        db = database.Database[float]("test")
-        db.add(3.5)
-        db.add(4.5)
-        db.save()
-        return str(db.get(1))
+    def index(self, q):
+        db = database.Database(Employee)
+        return str(db.query(q))
 
 # EOF
