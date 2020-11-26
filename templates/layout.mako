@@ -1,6 +1,7 @@
 <html>
   <head>
     <%block name="header"/>
+    <title>${self.title()}</title>
     <link rel="stylesheet" href="/main.css">
     <script defer src="/main.js"></script>
   </head>
@@ -8,7 +9,7 @@
     <header>
       <div class="box">
         <div>
-          <h1>Mitarbeiterqualifizierung - <%block name="title"/></h1>
+          <h1>Mitarbeiterqualifizierung - ${self.title()}</h1>
           <p>Version 1.0 / 25.11.2020</p>
         </div>
         <div>

@@ -47,7 +47,7 @@ nav ul {
 body {
   background-color: #121212;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: min-content auto;
   gap: 0.5em 0.5em;
   max-width: 1400px;
   margin: auto;
