@@ -52,9 +52,12 @@ class Database():
         query_result = c.fetchall()
         conn.commit()
         conn.close()
+        return self.__deserialize_result(query_result)
+
+    def __deserialize_result(self, result):
         fields = list(self.columns.items())
         r = []
-        for query_result_row in query_result:
+        for query_result_row in result:
             obj = self.model()
             for i, item in enumerate(query_result_row):
                 setattr(obj, fields[i][0], item)
