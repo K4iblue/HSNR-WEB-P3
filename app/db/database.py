@@ -50,7 +50,6 @@ class Database():
         c = conn.cursor()
         c.execute(f'SELECT * FROM {self.tableName}')
         query_result = c.fetchall()
-        conn.commit()
         conn.close()
         return self.__deserialize_result(query_result)
 
@@ -73,6 +72,3 @@ class Database():
         conn.close()
 
         return result
-
-
-    
