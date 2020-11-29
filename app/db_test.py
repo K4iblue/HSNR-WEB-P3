@@ -14,12 +14,6 @@ class DBTest:
     @cherrypy.expose
     def index(self):
         db = database.Database(Employee)
-        e = Employee()
-        e.name = "Mustermann"
-        e.surname = "Max"
-        e.occupation = "Neuss"
-        e.degree = "Abi"
-        db.insert(e)
         return str(db.get_all())
 
 # EOF
