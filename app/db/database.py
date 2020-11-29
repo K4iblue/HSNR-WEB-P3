@@ -1,10 +1,7 @@
 # coding: utf-8
 from enum import Enum
-from functools import wraps
 import os
 import os.path
-import codecs
-import json
 
 import sqlite3
 
@@ -16,33 +13,48 @@ class DbType(Enum):
 
 class Database():
     filename: str
+    tableName: str
+    columns: str
 
     def __init__(self, model):
         self.filename = os.path.join('data', 'data.db')
-        self.model = model
+        self.tableName = getattr(model, '__tablename__')
+        self.columns = getattr(model, '__columns__')
         self.__createTable()
 
     def __createTable(self):
-        tableName = getattr(self.model, '__tablename__')
-        fields = getattr(self.model, '__columns__')
-
+        def createFields(m):
+            if m['is_index']:
+                return f"{m['name']} {m['datatype']} PRIMARY KEY AUTOINCREMENT"
+            return f"{m['name']} {m['datatype']}"
+        fields = ",".join(map(createFields, self.columns.values()))
         conn = sqlite3.connect(self.filename)
         c = conn.cursor()
-        print(fields)
-        fields = ",".join(map(str, fields.values()))
-        print(fields)
-        c.execute(f'CREATE TABLE IF NOT EXISTS {tableName} ({fields})')
+        c.execute(f'CREATE TABLE IF NOT EXISTS {self.tableName} ({fields})')
+        conn.commit()
+        conn.close()
+
+    def insert(self, obj):
+        non_index_columns = list(filter(lambda m: (not m[1]['is_index']), self.columns.items()))
+        values = list(map(lambda m: getattr(obj, m[0]), non_index_columns))
+        fields = ",".join(map(lambda m: m[0], non_index_columns))
+        question_marks = ",".join(["?" for x in range(len(values))])
+        conn = sqlite3.connect(self.filename)
+        c = conn.cursor()
+        c.execute(f'INSERT INTO {self.tableName} ({fields}) VALUES({question_marks})', values)
         conn.commit()
         conn.close()
 
     def get_all(self):
-        tableName = getattr(self.model, '__tablename__')
-
         conn = sqlite3.connect(self.filename)
         c = conn.cursor()
-        c.execute(f'SELECT * FROM {tableName}')
+        c.execute(f'SELECT * FROM {self.tableName}')
+        result = c.fetchall()
         conn.commit()
         conn.close()
+        for a in result:
+            print(a)
+        return result
 
     def query(self, sql):
         conn = sqlite3.connect(self.filename)

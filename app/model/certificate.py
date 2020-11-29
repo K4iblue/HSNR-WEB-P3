@@ -13,4 +13,5 @@ class Certificate:
     def __post_init__(self):
         self.index = uuid.uuid1()
 
+print(Certificate.__dict__.get("__annotations__"))
 # EOF

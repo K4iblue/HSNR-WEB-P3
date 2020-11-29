@@ -12,8 +12,14 @@ class DBTest:
     default.expose = True
 
     @cherrypy.expose
-    def index(self, q):
+    def index(self):
         db = database.Database(Employee)
-        return str(db.query(q))
+        e = Employee()
+        e.name = "Mustermann"
+        e.surname = "Max"
+        e.occupation = "Neuss"
+        e.degree = "Abi"
+        db.insert(e)
+        return str(db.get_all())
 
 # EOF
