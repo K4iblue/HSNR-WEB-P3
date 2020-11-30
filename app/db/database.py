@@ -10,6 +10,9 @@ class DbType(Enum):
     Text = 'text'
     Blob = 'blob'
 
+class DatabaseException(Exception):
+    pass
+
 class Database():
     filename: str
     tableName: str
@@ -31,6 +34,20 @@ class Database():
         conn = sqlite3.connect(self.filename)
         c = conn.cursor()
         c.execute(f'CREATE TABLE IF NOT EXISTS {self.tableName} ({fields})')
+        conn.commit()
+        conn.close()
+
+    def update(self, obj):
+        index_field = list(filter(lambda m: m[1]['is_index'], self.columns.items()))[0]
+        index = getattr(obj, index_field[0], False)
+        if not index:
+            raise DatabaseException("Object has no Index! Can not perform update!")
+        condition = index_field[1]['name'] + " = " + str(index)
+        values = list(map(lambda m: getattr(obj, m[0]), self.columns.items()))
+        fields = ",".join(map(lambda m: (m[0] + "= ?"), self.columns.items()))
+        conn = sqlite3.connect(self.filename)
+        c = conn.cursor()
+        c.execute(f'UPDATE {self.tableName} SET {fields} WHERE {condition}', values)
         conn.commit()
         conn.close()
 
