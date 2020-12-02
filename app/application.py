@@ -5,7 +5,7 @@ from .view import View
 class Application:
     @cherrypy.expose
     def index(self):
-        return View().index({})
+        return View().index({"employees": 10, "trainings": 13, "participations": 5})
 
     @cherrypy.expose
     def default(self):

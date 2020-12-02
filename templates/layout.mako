@@ -23,9 +23,7 @@
     </header>
     <nav>
       <div class="box">
-        <ul>
-          <li><a href="/">Startseite</a></li>
-        </ul>
+        <span class="nav-headline"><a href="/">Startseite</a></span>
       </div>
       <div class="box">
         <span class="nav-headline">
