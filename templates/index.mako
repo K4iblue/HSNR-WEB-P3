@@ -2,7 +2,7 @@
 <%def name="title()">
   Startseite
 </%def>
-<h2>Mitarbeiter-Statistiken</h2>
+<h2>Mitarbeiter - Statistiken</h2>
 <ul>
   <li><span class="counter">${employees}</span> Mitarbeiter</li>
   <li><span class="counter">${trainings}</span> Weiterbildungen</li>
