@@ -62,6 +62,12 @@ class Database():
         conn.commit()
         conn.close()
 
+    def get_by_index(self, index):
+        all_objects = self.get_all()
+        index_field = list(filter(lambda m: m[1]['is_index'], self.columns.items()))[0]
+        obj = list(filter(lambda m: getattr(m, index_field[0]) == index,all_objects))
+        return obj[0]
+
     def get_all(self):
         conn = sqlite3.connect(self.filename)
         c = conn.cursor()
@@ -69,6 +75,14 @@ class Database():
         query_result = c.fetchall()
         conn.close()
         return self.__deserialize_result(query_result)
+
+    def count(self):
+        conn = sqlite3.connect(self.filename)
+        c = conn.cursor()
+        c.execute(f'SELECT COUNT(*) FROM {self.tableName}')
+        count = c.fetchone()[0]
+        conn.close()
+        return count
 
     def __deserialize_result(self, result):
         fields = list(self.columns.items())

@@ -1,5 +1,7 @@
 #coding: utf-8
 
+from app.db.database import Database
+from app.model.employee import Employee
 import sys
 import os
 import cherrypy
@@ -7,6 +9,8 @@ from app import application
 from app import db_test
 
 def main():
+    employees = Database(Employee)
+
     try:
         current_dir = os.path.dirname(os.path.abspath(__file__))
     except:
