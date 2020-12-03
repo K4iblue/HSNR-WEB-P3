@@ -32,6 +32,7 @@ header code {
 nav {
   display: grid;
   gap: 0.5em 0.5em;
+  max-height: 0;
 }
 
 .nav-current {
@@ -41,8 +42,11 @@ nav {
 
 .nav-headline {
   font-size: 120%;
-  margin-bottom: 0.5em;
   display: block;
+}
+
+.nav-headline:not(:last-child) {
+  margin-bottom: 0.5em;
 }
 
 * {
@@ -71,6 +75,7 @@ a:not(.nav-current):hover {
 
 main .box {
   padding-left: 1.5em;
+  padding-right: 1.5em;
 }
 
 main h2 {
@@ -91,21 +96,48 @@ main ul li {
 
 /* Edit Employees Page */
 
-.list-view {
+.list-header, .list-row {
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  grid-template-rows: auto;
+  grid-template-columns: repeat(4, 1fr) 85px;
+  gap: 0.25em;
 }
 
-.column-header {
+.list-header > div {
   font-weight: bold;
   color: #FF6188;
 }
 
-.list-color-primary {
-  background-color: #575757;
+.list-header {
+  margin-bottom: 0.5em;
 }
 
-.list-color-secondary {
+.list-row {
+  padding: 0.2em;
+  transition: all 0.25s ease;
+}
+
+div.list-row.active input {
+  background-color: #5f819d;
+  border: 1px solid #aaaaaa;
+}
+
+.list-row:nth-child(2n+2):not(:last-child) {
   background-color: #171717;
 }
+
+input {
+  border: 1px solid transparent;
+  background-color: transparent;
+}
+
+.icon {
+  filter: invert(1);
+  width: 16px;
+  height: 16px;
+}
+
+.actions {
+  justify-self: end;
+  transition: all 0.25s ease;
+}
+

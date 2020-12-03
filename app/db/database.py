@@ -69,6 +69,17 @@ class Database():
         obj = list(filter(lambda m: getattr(m, index_field[0]) == index,all_objects))
         return obj[0]
 
+    def delete(self, index):
+        index_field = list(filter(lambda m: m[1]['is_index'], self.columns.items()))[0]
+        print(index_field[1])
+        print(index_field[1]["name"])
+        conn = sqlite3.connect(self.filename)
+        c = conn.cursor()
+        print(index)
+        c.execute(f'DELETE FROM {self.tableName} WHERE {index_field[1]["name"]} = ?', [index])
+        conn.commit()
+        conn.close()
+
     def get_all(self):
         conn = sqlite3.connect(self.filename)
         c = conn.cursor()

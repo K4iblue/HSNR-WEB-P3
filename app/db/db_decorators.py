@@ -49,10 +49,18 @@ class db_model:
         self.tableName = tableName
 
     def __call__(self, cls):
+        def __getitem__(self, arg):
+            return getattr(self, arg)
+        def __setitem__(self, arg, v):
+            return setattr(self, arg, v)
         if self.tableName == None:
             self.tableName = self.camel_to_snake(cls.__name__)
         setattr(cls, '__tablename__', self.tableName)
+        setattr(cls, '__getitem__', __getitem__)
+        setattr(cls, '__setitem__', __setitem__)
         return cls
+
+
 
     @staticmethod
     def camel_to_snake(name):

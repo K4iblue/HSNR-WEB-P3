@@ -1,11 +1,9 @@
-<html>
+<!DOCTYPE html>
   <head>
-    <%block name="header"/>
     <title>${self.title()}</title>
-    <link rel="stylesheet" href="/main.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-    <script defer src="/main.js"></script>
+    ${(hasattr(self, 'head') and self.head()) or ''}
+    <link rel="stylesheet" href="/static/main.css">
+    <script defer src="/static/main.js"></script>
   </head>
   <body>
     <header>

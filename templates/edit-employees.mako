@@ -1,34 +1,48 @@
 <%inherit file="layout.mako"/>
-<%def name="title()">
-  Mitarbeiter
+<%def name="head()">
+  <script defer src="/static/edit-employees.js"></script>
 </%def>
-<ul>
-
-    <div class="list-view">
-        <div class="column-header">Name</div>
-        <div class="column-header">Nachname</div>
-        <div class="column-header">Akademischer Grad</div>
-        <div class="column-header">Beschäftigung</div>
-        <div class="column-header">Aktionen</div>
-
-    <% counter = 0 %>
-    % for employee in employees:
-        % if counter % 2 == 0:
-        <%  color_class = 'list-color-primary' %>
-        % else:
-        <%  color_class = 'list-color-secondary' %>
-        % endif
-        
-        <div class='column-cell ${color_class}'>${employee['name']}</div>
-        <div class='column-cell ${color_class}'>${employee['surname']}</div>
-        <div class='column-cell ${color_class}'>${employee['degree']}</div>
-        <div class='column-cell ${color_class}'>${employee['occupation']}</div>
-        <div class='column-cell ${color_class}'>
-            <i class="material-icon">create</i>
-            <i class="material-icon">delete_sweep</i>
-        </div>
-        <% counter += 1 %>
-    % endfor
+<%def name="title()">
+  Mitarbeiter Pflege
+</%def>
+<h2>Mitarbeiter:</h2>
+<div class="list-header">
+  <div>Name</div>
+  <div>Nachname</div>
+  <div>Akademischer Grad</div>
+  <div>Beschäftigung</div>
+  <div>Aktionen</div>
+</div>
+% for employee in employees:
+  <div data-employee-id="${employee['id']}" class="list-row">
+    <input disabled name="name" data-init-value="${employee['name']}" value="${employee['name']}"></input>
+    <input disabled name="surname" data-init-value="${employee['surname']}" value="${employee['surname']}"></input>
+    <input disabled name="degree" data-init-value="${employee['degree']}" value="${employee['degree']}"></input>
+    <input disabled name="occupation" data-init-value="${employee['occupation']}" value="${employee['occupation']}"></input>
+    <div class="actions">
+      <a href="#" class="edit"><img title="Bearbeiten" class="icon" src="/static/icons/edit.svg" /></a>
+      <a href="#" hidden class="save"><img title="Speichern" class="icon" src="/static/icons/check.svg" /></a>
+      <a href="#" hidden class="cancel"><img title="Abbrechen" class="icon" src="/static/icons/x.svg" /></a>
+      <a href="#" class="delete"><img title="Löschen" class="icon" src="/static/icons/trash-2.svg" /></a>
+      <a href="#" class="display"><img title="Anzeigen" class="icon" src="/static/icons/search.svg" /></a>
     </div>
-
-</ul>
+  </div>
+% endfor
+</br>
+<h2>Mitarbeiter hinzufügen:</h2>
+<div class="list-header">
+  <div>Name</div>
+  <div>Nachname</div>
+  <div>Akademischer Grad</div>
+  <div>Beschäftigung</div>
+  <div></div>
+</div>
+<div class="active list-row">
+  <input name="name"></input>
+  <input name="surname"></input>
+  <input name="degree"></input>
+  <input name="occupation"></input>
+  <div class="actions">
+    <a href="#" class="add">Hinzufügen</a>
+  </div>
+</div>
