@@ -3,6 +3,8 @@
     <%block name="header"/>
     <title>${self.title()}</title>
     <link rel="stylesheet" href="/main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <script defer src="/main.js"></script>
   </head>
   <body>

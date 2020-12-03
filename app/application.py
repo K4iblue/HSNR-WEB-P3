@@ -12,9 +12,17 @@ class Application:
         raise cherrypy.HTTPError(404)
     default.expose = True
 
-    @cherrypy.expose
-    def editEmployees(self):
-        return
+    @cherrypy.expose(alias = ['edit-employees'])
+    def edit_employees(self):
+        return View().editEmployees(
+            {"employees": 
+                [
+                    {"name": "Gordon", "surname": "Goldbach", "degree": "Bachelor of Science", "occupation": "web-development"}, 
+                    {"name": "Erik", "surname": "Simon", "degree": "Bachelor of Science", "occupation": ".net-development"},
+                    {"name": "Gordon", "surname": "Goldbach", "degree": "Bachelor of Science", "occupation": "web-development"}, 
+                    {"name": "Erik", "surname": "Simon", "degree": "Bachelor of Science", "occupation": ".net-development"}
+                ] 
+            })
 
     @cherrypy.expose
     def editTrainings(self):
