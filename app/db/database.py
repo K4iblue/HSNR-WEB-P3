@@ -9,6 +9,7 @@ class DbType(Enum):
     Real = 'real'
     Text = 'text'
     Blob = 'blob'
+    Timestamp = 'timestamp'
 
 class DatabaseException(Exception):
     pass
