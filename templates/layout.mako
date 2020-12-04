@@ -32,6 +32,8 @@
         <ul>
           <li><a href="/edit-employees">Pflege Mitarbeiterdaten</a></li>
           <li><a href="/edit-trainings">Pflege Weiterbildungen</a></li>
+          <li><a href="/edit-certificates">Pflege Zertifikate</a></li>
+          <li><a href="/edit-qualifications">Pflege Qualifikationen</a></li>
         </ul>
       </div>
       <div class="box">

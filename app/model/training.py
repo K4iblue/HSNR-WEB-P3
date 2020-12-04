@@ -14,11 +14,11 @@ class Training:
         pass
 
     @db_field(DbType.Timestamp)
-    def dataFrom(self):
+    def data_from(self):
         pass
 
     @db_field(DbType.Timestamp)
-    def dateTo(self):
+    def date_to(self):
         pass
 
     @db_field(DbType.Text)
@@ -26,11 +26,9 @@ class Training:
         pass
 
     @db_field(DbType.Int)
-    def maxParticipants(self):
+    def max_participants(self):
         pass
 
     @db_field(DbType.Int)
-    def minParticipants(self):
+    def min_participants(self):
         pass
-
-# EOF

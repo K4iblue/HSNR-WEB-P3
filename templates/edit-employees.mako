@@ -6,7 +6,7 @@
   Mitarbeiter Pflege
 </%def>
 <h2>Mitarbeiter:</h2>
-<div class="list-header">
+<div class="list-header list-employees">
   <div>Name</div>
   <div>Nachname</div>
   <div>Akademischer Grad</div>
@@ -14,7 +14,7 @@
   <div>Aktionen</div>
 </div>
 % for employee in employees:
-  <div data-employee-id="${employee['id']}" class="list-row">
+  <div data-employee-id="${employee['id']}" class="list-row list-employees">
     <input disabled name="name" data-init-value="${employee['name']}" value="${employee['name']}"></input>
     <input disabled name="surname" data-init-value="${employee['surname']}" value="${employee['surname']}"></input>
     <input disabled name="degree" data-init-value="${employee['degree']}" value="${employee['degree']}"></input>
@@ -30,14 +30,14 @@
 % endfor
 </br>
 <h2>Mitarbeiter hinzufügen:</h2>
-<div class="list-header">
+<div class="list-header list-employees">
   <div>Name</div>
   <div>Nachname</div>
   <div>Akademischer Grad</div>
   <div>Beschäftigung</div>
   <div></div>
 </div>
-<div class="active list-row">
+<div class="active list-row list-employees">
   <input name="name"></input>
   <input name="surname"></input>
   <input name="degree"></input>

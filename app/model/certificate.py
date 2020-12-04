@@ -1,17 +1,22 @@
 # coding: utf-8
-from dataclasses import dataclass
-from dataclasses import field
-import uuid
+from app.db.db_decorators import db_model, db_field
+from app.db.database import DbType
 
-@dataclass
+@db_model()
 class Certificate:
-    index: uuid.UUID = field(init=False)
-    title: str
-    desc: str
-    qualifies: str
 
-    def __post_init__(self):
-        self.index = uuid.uuid1()
+    @db_field(DbType.Int, None, True)
+    def id(self):
+        pass
 
-print(Certificate.__dict__.get("__annotations__"))
-# EOF
+    @db_field(DbType.Text)
+    def title(self):
+        pass
+
+    @db_field(DbType.Text)
+    def desc(self):
+        pass
+
+    @db_field(DbType.Text)
+    def qualifies(self):
+        pass

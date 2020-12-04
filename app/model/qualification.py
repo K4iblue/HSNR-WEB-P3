@@ -1,11 +1,17 @@
 # coding utf-8
+from app.db.db_decorators import db_model, db_field
+from app.db.database import DbType
 
-from dataclasses import dataclass
-
-@dataclass
+@db_model()
 class Qualification:
-    index: int
-    title: str
-    desc: str
+    @db_field(DbType.Int, None, True)
+    def id(self):
+        pass
 
-# EOF
+    @db_field(DbType.Text)
+    def title(self):
+        pass
+
+    @db_field(DbType.Text)
+    def desc(self):
+        pass

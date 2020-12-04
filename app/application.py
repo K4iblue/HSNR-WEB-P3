@@ -4,16 +4,18 @@ from .db.database import Database
 from .view import View
 
 class Application:
-    def __init__(self, employees: Database, trainings: Database):
+    def __init__(self, employees: Database, trainings: Database, certificates: Database, qualifications: Database):
         self.employees = employees
-        self.traingings = trainings
+        self.trainings = trainings
+        self.certificates = certificates
+        self.qualifications = qualifications
 
     @cherrypy.expose
     def index(self):
         return View().index(
                 {
                     "employees": self.employees.count(),
-                    "trainings": 13,
+                    "trainings": self.trainings.count(),
                     "participations": 5
                 }
             )
@@ -33,7 +35,27 @@ class Application:
 
     @cherrypy.expose
     def edit_trainings(self):
-        return
+        return View().editTrainings(
+                {
+                    "trainings": self.trainings.get_all()
+                }
+            )
+
+    @cherrypy.expose
+    def edit_certificates(self):
+        return View().editCertificates(
+                {
+                    "certificates": self.certificates.get_all()
+                }
+            )
+
+    @cherrypy.expose
+    def edit_qualifications(self):
+        return View().editQualifications(
+                {
+                    "qualifications": self.qualifications.get_all()
+                }
+            )
 
     @cherrypy.expose
     def participation_employees(self):

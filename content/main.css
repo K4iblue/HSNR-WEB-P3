@@ -98,8 +98,23 @@ main ul li {
 
 .list-header, .list-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr) 85px;
   gap: 0.25em;
+}
+
+.list-employees {
+  grid-template-columns: repeat(4, 1fr) 85px;
+}
+
+.list-qualifications {
+  grid-template-columns: repeat(2, 1fr) 85px;
+}
+
+.list-certificates {
+  grid-template-columns: repeat(3, 1fr) 85px;
+}
+
+.list-trainings {
+  grid-template-columns: 1.5fr 2fr 1fr 1fr 1fr 1fr 85px;
 }
 
 .list-header > div {

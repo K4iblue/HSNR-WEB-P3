@@ -25,4 +25,24 @@ class Employee:
     def occupation(self):
         pass
 
-# EOF
+@db_model()
+class OwnsQualification:
+
+    @db_field(DbType.Int)
+    def employee_id(self):
+        pass
+
+    @db_field(DbType.Int)
+    def qualification_id(self):
+        pass
+
+@db_model()
+class OwnsCertificate:
+
+    @db_field(DbType.Int)
+    def employee_id(self):
+        pass
+
+    @db_field(DbType.Int)
+    def certificate_id(self):
+        pass

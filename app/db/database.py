@@ -71,11 +71,9 @@ class Database():
 
     def delete(self, index):
         index_field = list(filter(lambda m: m[1]['is_index'], self.columns.items()))[0]
-        print(index_field[1])
-        print(index_field[1]["name"])
         conn = sqlite3.connect(self.filename)
         c = conn.cursor()
-        print(index)
+        print(f'DELETE FROM {self.tableName} WHERE {index_field[1]["name"]} = ?')
         c.execute(f'DELETE FROM {self.tableName} WHERE {index_field[1]["name"]} = ?', [index])
         conn.commit()
         conn.close()
