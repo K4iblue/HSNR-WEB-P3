@@ -14,7 +14,7 @@ class Training:
         pass
 
     @db_field(DbType.Timestamp)
-    def data_from(self):
+    def date_from(self):
         pass
 
     @db_field(DbType.Timestamp)

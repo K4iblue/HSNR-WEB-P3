@@ -34,6 +34,10 @@ class Application:
             )
 
     @cherrypy.expose
+    def add_training(self):
+        return View().addTraining({})
+
+    @cherrypy.expose
     def edit_trainings(self):
         return View().editTrainings(
                 {
