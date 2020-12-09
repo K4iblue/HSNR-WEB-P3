@@ -26,7 +26,7 @@ class Employee:
         pass
 
 @db_model()
-class OwnsQualification:
+class EmployeeOwnsQualification:
 
     @db_field(DbType.Int)
     def employee_id(self):
@@ -37,7 +37,7 @@ class OwnsQualification:
         pass
 
 @db_model()
-class OwnsCertificate:
+class EmployeeOwnsCertificate:
 
     @db_field(DbType.Int)
     def employee_id(self):

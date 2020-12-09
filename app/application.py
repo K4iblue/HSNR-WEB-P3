@@ -48,7 +48,9 @@ class Application:
     def edit_training(self, index):
         return View().editTraining(
                 {
-                    "training": self.trainings.get_by_index(int(index))
+                    "training": self.trainings.get_by_index(int(index)),
+                    "certificates": self.certificates.get_all(),
+                    "qualifications": self.qualifications.get_all()
                 }
             )
 

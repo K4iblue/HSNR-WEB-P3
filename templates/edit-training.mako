@@ -3,9 +3,9 @@
   <script defer src="/static/edit-training.js"></script>
 </%def>
 <%def name="title()">
-  Weiterbildung hinzufügen
+  Weiterbildung bearbeiten
 </%def>
-<h2>Weiterbildungen:</h2>
+<h2>Weiterbildung Bearbeiten:</h2>
 <input name="id" value="${training["id"]}" hidden/>
 <label for="title">Bezeichnung:</label>
 <input name="title" value="${training["title"] | h}"></input>
@@ -22,6 +22,20 @@
 <br/>
 <br/>
 <div class="flex-buttons">
-  <a href="#" class="save button">Speichern</a>
+  <a href="#" class="training save button">Speichern</a>
+  <a href="/edit-trainings" class="back button">Zurück</a>
+</div>
+<br/>
+<h2>Zertifikat:</h2>
+<select name="certificate">
+  <option value="-1" selected>Keins</option>
+  % for certificate in certificates:
+    <option value="${certificate["id"]}" selected>${certificate["title"]}</option>
+  % endfor
+</select>
+<br/>
+<br/>
+<div class="flex-buttons">
+  <a href="#" class="certificate save button">Speichern</a>
   <a href="/edit-trainings" class="back button">Zurück</a>
 </div>

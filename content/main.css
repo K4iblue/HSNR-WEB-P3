@@ -43,17 +43,17 @@
   width: 100%;
 }
 
-input, textarea, .button {
+input, textarea, select, .button {
   border: none;
   outline: 1px solid #aaaaaa;
   background-color: transparent;
 }
 
-input:disabled, textarea:disabled {
+input:disabled, textarea:disabled, select:disabled {
   outline: none;
 }
 
-input:focus, textarea:focus, .button:focus, .button:hover {
+input:focus, textarea:focus, select:focus, .button:focus, .button:hover {
   outline: 2px solid #f0c674;
 }
 

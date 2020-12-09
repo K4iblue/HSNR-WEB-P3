@@ -1,4 +1,4 @@
-document.querySelectorAll(".save").forEach((e) =>
+document.querySelectorAll(".training .save").forEach((e) =>
   e.addEventListener("click", function (e) {
     const id = document.querySelector('[name="id"]').value;
     const title = document.querySelector('[name="title"]').value;
