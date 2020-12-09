@@ -17,6 +17,7 @@ from app.employee_api import EmployeeApi
 from app.certificate_api import CertificateApi
 from app.qualification_api import QualificationApi
 from app.training_api import TraingApi
+from app.participation_api import ParticipationApi
 
 def main():
     employees = Database(Employee)
@@ -46,6 +47,7 @@ def main():
     cherrypy.tree.mount(CertificateApi(certificates), '/api/certificate')
     cherrypy.tree.mount(TraingApi(trainings, granted_qualifications), '/api/training')
     cherrypy.tree.mount(QualificationApi(qualifications), '/api/qualification')
+    cherrypy.tree.mount(ParticipationApi(participations), '/api/participation')
     cherrypy.config.update({'request.show_tracebacks': False})
     cherrypy.engine.start()
     cherrypy.engine.block()

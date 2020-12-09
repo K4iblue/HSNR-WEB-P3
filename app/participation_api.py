@@ -16,12 +16,18 @@ class ParticipationApi:
     @cherrypy.tools.json_in()
     def update(self):
         input_json = cherrypy.request.json
-        certificate = Certificate()
-        certificate.id = input_json['id']
-        certificate.title = input_json['title']
-        certificate.desc = input_json['desc']
-        certificate.qualifies = input_json['qualifies']
-        self.certificates.update(certificate)
+        employee_id = input_json['employee_id']
+        training_id = input_json['training_id']
+        status = input_json['status']
+        self.participations.query(
+            '''
+                UPDATE participation
+                SET status = ? 
+                WHERE employee_id = ?
+                  AND training_id = ?
+            ''', 
+            [status, employee_id, training_id]
+        )
 
     @cherrypy.expose
     @cherrypy.tools.json_in()
@@ -30,8 +36,5 @@ class ParticipationApi:
         participation = Participation()
         participation.employee_id = input_json['employee_id']
         participation.training_id = input_json['training_id']
+        participation.status = input_json['status']
         self.participations.insert(participation)
-
-    @cherrypy.expose
-    def delete(self, index):
-        self.certificates.delete(index)
