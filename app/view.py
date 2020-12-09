@@ -48,8 +48,8 @@ class View:
         template = self.lookup.get_template('participation-employee.mako')
         return template.render(**data)
 
-    def participateTrainings(self, data):
-        template = self.lookup.get_template('participate-trainings.mako')
+    def participationTrainings(self, data):
+        template = self.lookup.get_template('participation-trainings.mako')
         return template.render(**data)
 
     def reportEmployees(self, data):

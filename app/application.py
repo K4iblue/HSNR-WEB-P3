@@ -203,11 +203,45 @@ class Application:
 
     @cherrypy.expose
     def participation_trainings(self):
-        return
+        trainings = self.trainings.get_all()
+        for training in trainings:
+            training.participations = self.participations.query(
+                '''
+                    SELECT count(*)
+                    FROM training t
+                    JOIN participation p
+                      ON t.id = p.training_id
+                '''
+            )[0][0]
+
+        return View().participationTrainings(
+            {
+                "trainings": trainings
+            }
+        )
 
     @cherrypy.expose
     def report_employees(self):
-        return
+        employees = self.employees.get_all()
+        for employee in employees:
+            trainings = self.participations.query(
+                '''
+                    SELECT t.id, t.title, t.date_from, t.date_to, t.desc, t.max_participants, t.min_participants, t.certificate_id, p.status 
+                    FROM participation p
+                    JOIN training t
+                      ON p.training_id = t.id
+                    WHERE p.employee_id = ?
+                ''',
+                [employee.id]
+            )
+            trainings = self.trainings.deserialize_result(trainings, [['status']])
+            employee.trainings = trainings
+
+        return View().reportEmployees(
+            {
+                "employees": employees
+            }
+        )
 
     @cherrypy.expose
     def report_trainings(self):

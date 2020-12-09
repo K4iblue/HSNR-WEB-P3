@@ -94,9 +94,12 @@ class Database():
         conn.close()
         return count
 
-    def deserialize_result(self, result):
+    def deserialize_result(self, result, additional_fields = None):
         fields = list(self.columns.items())
+        if additional_fields is not None:
+            fields += additional_fields
         r = []
+        print(fields)
         for query_result_row in result:
             obj = self.model()
             for i, item in enumerate(query_result_row):
@@ -104,9 +107,11 @@ class Database():
             r.append(obj)
         return r
 
-    def query(self, sql, arguments):
+    def query(self, sql, arguments = None):
         conn = sqlite3.connect(self.filename)
         c = conn.cursor()
+        if arguments is None:
+            arguments = []
         c.execute(sql, arguments)
         result = c.fetchall()
         conn.commit()

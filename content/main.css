@@ -24,6 +24,10 @@
   grid-template-columns: 0.5fr 1fr 0.5fr 0.5fr 0.75fr 0.75fr 85px;
 }
 
+.list-participation-trainings {
+  grid-template-columns: 0.5fr 1fr 0.5fr 0.5fr 0.75fr 85px;
+}
+
 .list-header > div, label {
   font-weight: bold;
   color: #b5bd68;
@@ -40,6 +44,19 @@
 
 .list-row > input {
   width: 100%;
+}
+
+.list-report {
+
+}
+
+.report-training {
+  margin-left: 0.75em;
+  font-family: monospace;
+}
+
+.report-training input {
+  width: 80px;
 }
 
 input, textarea, select, .button {
