@@ -1,6 +1,8 @@
 # VS Code DevContainer
 .devcontainer
 
+data/data.db
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
