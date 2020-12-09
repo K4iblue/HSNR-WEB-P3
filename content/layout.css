@@ -31,7 +31,7 @@ header code {
 
 nav {
   display: grid;
-  gap: 0.5em;
+  gap: 1em;
   max-height: 0;
 }
 
@@ -57,10 +57,10 @@ body {
   background-color: #121212;
   display: grid;
   grid-template-columns: max-content 1fr;
-  gap: 0.5em 0.5em;
+  gap: 1em;
   max-width: 1400px;
   margin: auto;
-  padding: 0.5em;
+  padding: 1em;
   font-family: Tahoma, Verdana, Segoe, sans-serif;
 }
 

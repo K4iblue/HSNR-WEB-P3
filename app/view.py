@@ -28,6 +28,10 @@ class View:
         template = self.lookup.get_template('edit-trainings.mako')
         return template.render(**data)
 
+    def viewTraining(self, data):
+        template = self.lookup.get_template('view-training.mako')
+        return template.render(**data)
+
     def editTraining(self, data):
         template = self.lookup.get_template('edit-training.mako')
         return template.render(**data)

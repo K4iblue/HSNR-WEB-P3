@@ -125,6 +125,28 @@ class Application:
                 }
             )
 
+    @cherrypy.expose
+    def view_training(self, index):
+        training = self.trainings.get_by_index(int(index))
+        certificate = self.certificates.get_by_index(int(training["certificate_id"]))
+        qualifications = self.qualifications.query(
+            '''
+                SELECT id, title, desc
+                FROM qualification q
+                JOIN training_grants_qualification t
+                  ON q.id = t.qualification_id
+                WHERE t.training_id = ?
+            ''', 
+            [training.id]
+        )
+        qualifications = self.qualifications.deserialize_result(qualifications)
+        return View().viewTraining(
+                {
+                    "training": training,
+                    "certificate": certificate,
+                    "qualifications": qualifications
+                }
+            )
 
     @cherrypy.expose
     def edit_certificates(self):

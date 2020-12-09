@@ -11,8 +11,8 @@
   <div>Beschreibung</div>
   <div>Von</div>
   <div>Bis</div>
-  <div>max. Teilnehmer</div>
   <div>min. Teilnehmer</div>
+  <div>max. Teilnehmer</div>
   <div>Aktionen</div>
 </div>
 % for training in trainings:
@@ -26,7 +26,7 @@
     <div class="actions">
       <a href="/edit-training?index=${training['id']}" class="edit"><img title="Bearbeiten" class="icon" src="/static/icons/edit.svg" /></a>
       <a href="#" class="delete"><img title="Löschen" class="icon" src="/static/icons/trash-2.svg" /></a>
-      <a href="#" class="display"><img title="Anzeigen" class="icon" src="/static/icons/search.svg" /></a>
+      <a href="/view-training/${training["id"]}" class="display"><img title="Anzeigen" class="icon" src="/static/icons/search.svg" /></a>
     </div>
   </div>
 % endfor

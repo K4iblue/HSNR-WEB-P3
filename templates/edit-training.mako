@@ -22,13 +22,13 @@
 <label>Zertifikat:</label>
 <select name="certificate">
   % for certificate in certificates:
-    <option value="${certificate["id"]}">${certificate["title"]}</option>
+    <option value="${certificate["id"]}" ${certificate["id"] == training["certificate_id"] and "selected" or ""}>${certificate["title"]}</option>
   % endfor
 </select>
 <br/>
 <br/>
 <div class="flex-buttons">
-  <a href="#" class="training save button">Speichern</a>
+  <a href="#" class="save button">Speichern</a>
   <a href="/edit-trainings" class="back button">Zurück</a>
 </div>
 <br/>

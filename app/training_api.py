@@ -49,14 +49,14 @@ class TraingApi:
         input_json = cherrypy.request.json
         granted_qualification = TrainingGrantsQualification()
         granted_qualification.training_id = input_json['training_id']
-        granted_qualification.certificate_id = input_json['qualification_id']
+        granted_qualification.qualification_id = input_json['qualification_id']
         self.granted_qualifications.insert(granted_qualification)
 
     @cherrypy.expose
     @cherrypy.tools.json_in()
     def remove_qualification(self, training_id, qualification_id):
-        self.granted_qualifications.query('''
-            DELETE FROM {granted_qualifications.tableName}
+        self.granted_qualifications.query(f'''
+            DELETE FROM {self.granted_qualifications.tableName}
             WHERE training_id = ?
               AND qualification_id = ?
         ''', [training_id, qualification_id])
