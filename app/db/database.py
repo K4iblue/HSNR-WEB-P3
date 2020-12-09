@@ -99,7 +99,6 @@ class Database():
         if additional_fields is not None:
             fields += additional_fields
         r = []
-        print(fields)
         for query_result_row in result:
             obj = self.model()
             for i, item in enumerate(query_result_row):
