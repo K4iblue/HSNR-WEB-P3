@@ -104,10 +104,10 @@ class Database():
             r.append(obj)
         return r
 
-    def query(self, sql):
+    def query(self, sql, arguments):
         conn = sqlite3.connect(self.filename)
         c = conn.cursor()
-        c.execute(sql)
+        c.execute(sql, arguments)
         result = c.fetchall()
         conn.commit()
         conn.close()

@@ -63,10 +63,10 @@ class Application:
         qualifications = self.qualifications.query(
         '''
             SELECT id, title, desc
-            FROM qualifications q
+            FROM qualification q
             JOIN training_grants_qualification t
               ON q.id = t.qualification_id
-            WHERE t.traning_id = ?
+            WHERE t.training_id = ?
         ''', [training.id])
         qualifications = self.qualifications.deserialize_result(qualifications)
         return View().editTraining(
