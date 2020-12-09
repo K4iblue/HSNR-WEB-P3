@@ -17,7 +17,7 @@ class DatabaseException(Exception):
 class Database():
     filename: str
     tableName: str
-    columns: str
+    columns: object
 
     def __init__(self, model):
         self.filename = os.path.join('data', 'data.db')

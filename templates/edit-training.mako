@@ -19,6 +19,12 @@
 <input type="number" name="min_participants" value="${training["min_participants"] | h}"></input>
 <label for="max_participants">maximale Teilnehmer:</label>
 <input type="number" name="max_participants" value="${training["max_participants"] | h}"></input>
+<label>Zertifikat:</label>
+<select name="certificate">
+  % for certificate in certificates:
+    <option value="${certificate["id"]}">${certificate["title"]}</option>
+  % endfor
+</select>
 <br/>
 <br/>
 <div class="flex-buttons">
@@ -26,13 +32,14 @@
   <a href="/edit-trainings" class="back button">Zurück</a>
 </div>
 <br/>
-<h2>Zertifikat:</h2>
-<select name="certificate">
-  <option value="-1" selected>Keins</option>
-  % for certificate in certificates:
-    <option value="${certificate["id"]}" selected>${certificate["title"]}</option>
+<h2>Qualifikationen:</h2>
+<br/>
+<br/>
+  <select name="qualification">
+  % for qualification in all_qualifications:
+    <option value="${qualification["id"]}">${qualification["title"]}</option>
   % endfor
-</select>
+  </select>
 <br/>
 <br/>
 <div class="flex-buttons">

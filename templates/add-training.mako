@@ -18,9 +18,15 @@
 <input type="number" name="min_participants"></input>
 <label>maximale Teilnehmer:</label>
 <input type="number" name="max_participants"></input>
+<label>Zertifikat:</label>
+<select name="certificate_id">
+  % for certificate in certificates:
+    <option value="${certificate["id"]}">${certificate["title"]}</option>
+  % endfor
+</select>
 <br/>
 <div class="alert-box-warning">
-  Zertifikate und Qualifikationen können erst nach der Erstellung über die Bearbeiten-Funktion hinzufügen werden.
+  Qualifikationen können erst nach der Erstellung über die Bearbeiten-Funktion hinzufügen werden.
 </div>
 <div class="flex-buttons">
   <a href="#" class="add button">Weiterbildung hinzufügen</a>

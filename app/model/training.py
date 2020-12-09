@@ -33,6 +33,10 @@ class Training:
     def min_participants(self):
         pass
 
+    @db_field(DbType.Int)
+    def certificate_id(self):
+        pass
+
 @db_model()
 class TrainingGrantsQualification:
 

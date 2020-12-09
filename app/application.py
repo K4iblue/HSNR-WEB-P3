@@ -35,7 +35,11 @@ class Application:
 
     @cherrypy.expose
     def add_training(self):
-        return View().addTraining({})
+        return View().addTraining(
+                {
+                    "certificates": self.certificates.get_all()
+                }
+            )
 
     @cherrypy.expose
     def edit_trainings(self):
@@ -46,11 +50,15 @@ class Application:
             )
     @cherrypy.expose
     def edit_training(self, index):
+        training = self.trainings.get_by_index(int(index))
+        print(training["certificate_id"])
+        certificate = self.certificates.get_by_index(int(training["certificate_id"]))
         return View().editTraining(
                 {
-                    "training": self.trainings.get_by_index(int(index)),
+                    "training": training,
+                    "certificate": certificate,
                     "certificates": self.certificates.get_all(),
-                    "qualifications": self.qualifications.get_all()
+                    "all_qualifications": self.qualifications.get_all()
                 }
             )
 

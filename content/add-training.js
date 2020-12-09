@@ -10,6 +10,9 @@ document.querySelectorAll(".add").forEach((e) =>
     const max_participants = document.querySelector(
       '[name="max_participants"]'
     );
+    const certificate_id = document.querySelector(
+      '[name="certificate_id"]'
+    );
     training = {};
     training.title = title.value;
     training.desc = desc.value;
@@ -17,6 +20,7 @@ document.querySelectorAll(".add").forEach((e) =>
     training.date_to = date_to.value;
     training.min_participants = min_participants.value;
     training.max_participants = max_participants.value;
+    training.certificate_id = certificate_id.value;
 
     fetch("/api/training/insert", {
       method: "post",
