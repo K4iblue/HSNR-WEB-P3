@@ -5,7 +5,6 @@ from app.model.employee import Employee
 from app.model.employee import EmployeeOwnsCertificate
 from app.model.employee import EmployeeOwnsQualification
 from app.model.training import Training
-from app.model.training import TrainingGrantsCertificate
 from app.model.training import TrainingGrantsQualification
 from app.model.certificate import Certificate
 from app.model.qualification import Qualification
@@ -23,7 +22,6 @@ def main():
     owned_certificates = Database(EmployeeOwnsCertificate)
     owned_qualifications = Database(EmployeeOwnsQualification)
     trainings = Database(Training)
-    granted_certificates = Database(TrainingGrantsCertificate)
     granted_qualifications = Database(TrainingGrantsQualification)
     certificates = Database(Certificate)
     qualifications = Database(Qualification)
@@ -44,7 +42,7 @@ def main():
     cherrypy.tree.mount(Application(employees, trainings, certificates, qualifications), '/', static_config)
     cherrypy.tree.mount(EmployeeApi(employees, owned_certificates, owned_qualifications), '/api/employee')
     cherrypy.tree.mount(CertificateApi(certificates), '/api/certificate')
-    cherrypy.tree.mount(TraingApi(trainings, granted_certificates, granted_qualifications), '/api/training')
+    cherrypy.tree.mount(TraingApi(trainings, granted_qualifications), '/api/training')
     cherrypy.tree.mount(QualificationApi(qualifications), '/api/qualification')
     cherrypy.config.update({'request.show_tracebacks': False})
     cherrypy.engine.start()

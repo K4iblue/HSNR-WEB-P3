@@ -2,12 +2,11 @@
 import cherrypy
 from .db.database import Database
 from .model.training import Training
-from .model.training import TrainingGrantsCertificate
+from .model.training import TrainingGrantsQualification
 
 class TraingApi:
-    def __init__(self, trainings: Database, granted_certificates: Database, granted_qualifications: Database):
+    def __init__(self, trainings: Database, granted_qualifications: Database):
         self.trainings = trainings
-        self.granted_certificates = granted_certificates
         self.granted_qualifications = granted_qualifications
 
     @cherrypy.expose
@@ -27,6 +26,7 @@ class TraingApi:
         training.date_to = input_json['date_to']
         training.min_participants = input_json['min_participants']
         training.max_participants = input_json['max_participants']
+        training.certificate_id = input_json['certificate_id']
         self.trainings.update(training)
 
     @cherrypy.expose
@@ -40,7 +40,26 @@ class TraingApi:
         training.date_to = input_json['date_to']
         training.min_participants = input_json['min_participants']
         training.max_participants = input_json['max_participants']
+        training.certificate_id = input_json['certificate_id']
         self.trainings.insert(training)
+
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    def add_qualification(self):
+        input_json = cherrypy.request.json
+        granted_qualification = TrainingGrantsQualification()
+        granted_qualification.training_id = input_json['training_id']
+        granted_qualification.certificate_id = input_json['qualification_id']
+        self.granted_qualifications.insert(granted_qualification)
+
+    @cherrypy.expose
+    @cherrypy.tools.json_in()
+    def remove_qualification(self, training_id, qualification_id):
+        self.granted_qualifications.query('''
+            DELETE FROM {granted_qualifications.tableName}
+            WHERE training_id = ?
+              AND qualification_id = ?
+        ''', [training_id, qualification_id])
 
     @cherrypy.expose
     def delete(self, index):
