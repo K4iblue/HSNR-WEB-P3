@@ -2,10 +2,13 @@
 import cherrypy
 from .db.database import Database
 from .model.training import Training
+from .model.training import TrainingGrantsCertificate
 
 class TraingApi:
-    def __init__(self, trainings: Database, grantedCertificates: Database, grantedQualifications: Database):
+    def __init__(self, trainings: Database, granted_certificates: Database, granted_qualifications: Database):
         self.trainings = trainings
+        self.granted_certificates = granted_certificates
+        self.granted_qualifications = granted_qualifications
 
     @cherrypy.expose
     def default(self):
