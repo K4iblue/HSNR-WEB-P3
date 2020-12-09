@@ -98,8 +98,7 @@ document.querySelectorAll(".actions .add").forEach((e) =>
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(employee),
-      });
-      window.location.reload();
+      }).then(() => window.location.reload());
     } else {
       alert("Sie bearbeitet gerade noch einen Eintrag!");
     }

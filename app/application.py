@@ -185,6 +185,7 @@ class Application:
             ''',
             [index]
         )
+        participations = self.participations.deserialize_result(participations)
         participations_ids = list(map(lambda m: m.training_id, participations))
         trainings_assigned = list(filter(lambda m: m.id in participations_ids, trainings))
         trainings_available = list(filter(lambda m: m.id not in participations_ids, trainings))
