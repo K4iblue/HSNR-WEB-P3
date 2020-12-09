@@ -7,7 +7,7 @@
   <div>
     <label>${training['title'] | h}:</label>
     % for employee in training['participants']:
-        <div class="report-training">
+        <div class="report">
             ${employee['name'] | h} ${employee['surname'] | h}
         </div>
     % endfor

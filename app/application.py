@@ -224,7 +224,6 @@ class Application:
     @cherrypy.expose
     def report_employees(self):
         employees = self.employees.get_all()
-        employees = sorted(employees, key=lambda e: e['name'])
         for employee in employees:
             trainings = self.participations.query(
                 '''
@@ -237,11 +236,11 @@ class Application:
                 [employee.id]
             )
             trainings = self.trainings.deserialize_result(trainings, [['status']])
-            employee.trainings = trainings
+            employee.trainings = sorted(trainings, key=lambda t: t['title'])
 
         return View().reportEmployees(
             {
-                "employees": employees
+                "employees": sorted(employees, key=lambda e: e['name'])
             }
         )
 
@@ -260,16 +259,34 @@ class Application:
                 [training.id]
             )
             participants = self.employees.deserialize_result(participants)
-            training.participants = participants
-        trainings = sorted(trainings, key=lambda t: t['title'])
+            training.participants = sorted(participants, key=lambda p: p['name'])
+
         return View().reportTrainings(
             {
-                "trainings": trainings
+                "trainings": sorted(trainings, key=lambda t: t['title'])
             }
         )
 
     @cherrypy.expose
     def report_certificates(self):
-        return
+        employees = self.employees.get_all()
+        for employee in employees:
+            certificates = self.certificates.query(
+                '''
+                    SELECT c.id, c.title, c.desc, c.qualifies
+                    FROM certificate c
+                    JOIN employee_owns_certificate e
+                      ON c.id = e.certificate_id
+                      AND e.employee_id = ?
+                ''',
+                [employee.id]
+            )
+            certificates = self.certificates.deserialize_result(certificates)
+            employee.certificates = sorted(certificates, key=lambda c: c['title'])
+        return View().reportCertificates(
+            {
+                "employees": sorted(employees, key=lambda e: e['name'])
+            }
+        )
 
 # EOF

@@ -7,7 +7,7 @@
   <div>
     <label>${employee['name'] | h} ${employee['surname'] | h}:</label>
     % for training in employee['trainings']:
-        <div class="report-training">
+        <div class="report">
             ${training['title'] | h} von <input disabled value="${training['date_from'] | h}" type="date" /> bis <input disabled value="${training['date_to'] | h}" type="date" /> ${training['status'] | h}
         </div>
     % endfor
