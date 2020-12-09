@@ -4,7 +4,7 @@ from .db.database import Database
 from .model.training import Training
 
 class TraingApi:
-    def __init__(self, trainings: Database):
+    def __init__(self, trainings: Database, grantedCertificates: Database, grantedQualifications: Database):
         self.trainings = trainings
 
     @cherrypy.expose

@@ -4,8 +4,10 @@ from .db.database import Database
 from .model.employee import Employee
 
 class EmployeeApi:
-    def __init__(self, employees: Database):
+    def __init__(self, employees: Database, owned_certificates: Database, owned_qualifications: Database):
         self.employees = employees
+        self.owned_certificates = owned_certificates
+        self.owned_qualifications = owned_qualifications
 
     @cherrypy.expose
     def default(self):
