@@ -63,7 +63,7 @@ class Database():
         conn.commit()
         conn.close()
 
-    def get_by_index(self, index):
+    def get_by_index(self, index: int):
         all_objects = self.get_all()
         index_field = list(filter(lambda m: m[1]['is_index'], self.columns.items()))[0]
         obj = list(filter(lambda m: getattr(m, index_field[0]) == index,all_objects))

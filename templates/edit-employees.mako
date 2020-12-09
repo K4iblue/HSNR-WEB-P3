@@ -15,10 +15,10 @@
 </div>
 % for employee in employees:
   <div data-employee-id="${employee['id']}" class="list-row list-employees">
-    <input disabled name="name" data-init-value="${employee['name']}" value="${employee['name']}"></input>
-    <input disabled name="surname" data-init-value="${employee['surname']}" value="${employee['surname']}"></input>
-    <input disabled name="degree" data-init-value="${employee['degree']}" value="${employee['degree']}"></input>
-    <input disabled name="occupation" data-init-value="${employee['occupation']}" value="${employee['occupation']}"></input>
+    <input disabled name="name" data-init-value="${employee['name'] | h}" value="${employee['name'] | h}"></input>
+    <input disabled name="surname" data-init-value="${employee['surname'] | h}" value="${employee['surname'] | h}"></input>
+    <input disabled name="degree" data-init-value="${employee['degree'] | h}" value="${employee['degree'] | h}"></input>
+    <input disabled name="occupation" data-init-value="${employee['occupation'] | h}" value="${employee['occupation'] | h}"></input>
     <div class="actions">
       <a href="#" class="edit"><img title="Bearbeiten" class="icon" src="/static/icons/edit.svg" /></a>
       <a href="#" hidden class="save"><img title="Speichern" class="icon" src="/static/icons/check.svg" /></a>

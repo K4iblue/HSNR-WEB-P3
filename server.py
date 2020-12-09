@@ -34,10 +34,10 @@ def main():
         }
     }
     cherrypy.tree.mount(Application(employees, trainings, certificates, qualifications), '/', static_config)
-    cherrypy.tree.mount(EmployeeApi(employees), '/api/employee', static_config)
-    cherrypy.tree.mount(CertificateApi(certificates), '/api/certificate', static_config)
-    cherrypy.tree.mount(TraingApi(trainings), '/api/training', static_config)
-    cherrypy.tree.mount(QualificationApi(qualifications), '/api/qualification', static_config)
+    cherrypy.tree.mount(EmployeeApi(employees), '/api/employee')
+    cherrypy.tree.mount(CertificateApi(certificates), '/api/certificate')
+    cherrypy.tree.mount(TraingApi(trainings), '/api/training')
+    cherrypy.tree.mount(QualificationApi(qualifications), '/api/qualification')
     cherrypy.config.update({'request.show_tracebacks': False})
     cherrypy.engine.start()
     cherrypy.engine.block()

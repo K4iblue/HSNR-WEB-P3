@@ -1,98 +1,5 @@
-.box {
-  background-color: #272727;
-  padding: 0.75em;
-  box-shadow: 3px 3px 20px #000000;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  margin-left: 0.75em;
-  padding: 0;
-}
-
-ul li {
-  margin-bottom: 0.25em;
-}
-
-header {
-  grid-column: auto / span 2;
-}
-
-header .box {
-  display: grid;
-  grid-template-columns: auto max-content;
-}
-
-header code {
-  float: right;
-  direction: rtl;
-}
-
-nav {
-  display: grid;
-  gap: 0.5em 0.5em;
-  max-height: 0;
-}
-
-.nav-current {
-  font-weight: bold;
-  color: #FF6188;
-}
-
-.nav-headline {
-  font-size: 120%;
-  display: block;
-}
-
-.nav-headline:not(:last-child) {
-  margin-bottom: 0.5em;
-}
-
-* {
-  color: #f7f7f7;
-}
-
-body {
-  background-color: #121212;
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: 0.5em 0.5em;
-  max-width: 1400px;
-  margin: auto;
-  padding: 0.5em;
-  font-family: Tahoma, Verdana, Segoe, sans-serif;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:not(.nav-current):hover {
-  text-decoration: underline;
-  color: #a7a7a7;
-}
-
-main .box {
-  padding-left: 1.5em;
-  padding-right: 1.5em;
-}
-
-main h2 {
-  margin: 0;
-  margin-bottom: 0.5em;
-}
-
-main ul li {
-  padding: 0.25em
-}
-
-.counter {
-  font-weight: bold;
-  color: #FF6188;
-}
-
-
+@import "layout.css";
+@import "counter.css";
 
 /* Edit Employees Page */
 
@@ -114,12 +21,12 @@ main ul li {
 }
 
 .list-trainings {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 85px;
+  grid-template-columns: 0.5fr 1fr 0.5fr 0.5fr 0.75fr 0.75fr 85px;
 }
 
 .list-header > div {
   font-weight: bold;
-  color: #FF6188;
+  color: #b5bd68;
 }
 
 .list-header {
@@ -148,6 +55,11 @@ input:disabled, textarea:disabled {
 
 input:focus, textarea:focus, .button:focus, .button:hover {
   outline: 2px solid #f0c674;
+}
+
+textarea {
+  width: 30em;
+  height: 10em;
 }
 
 .list-row:nth-child(2n+2):not(:last-child) {
@@ -189,6 +101,11 @@ label {
 
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
+}
+
+input[type="date"]:disabled::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
 }
 
 .flex-buttons {

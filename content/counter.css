@@ -1,0 +1,25 @@
+.counter-box {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+}
+
+@property --num {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+.counter {
+  transition: --num 2s;
+  counter-set: num var(--num);
+  font-weight: bold;
+  color: #b5bd68;
+  font-size: 5em;
+}
+
+.counter::after {
+  content: counter(num);
+}
+

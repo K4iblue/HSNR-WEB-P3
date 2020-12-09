@@ -13,8 +13,8 @@
 </div>
 % for qualification in qualifications:
   <div data-qualification-id="${qualification['id']}" class="list-row list-qualifications">
-    <input disabled name="title" data-init-value="${qualification['title']}" value="${qualification['title']}"></input>
-    <input disabled name="desc" data-init-value="${qualification['desc']}" value="${qualification['desc']}"></input>
+    <input disabled name="title" data-init-value="${qualification['title'] | h}" value="${qualification['title'] | h}"></input>
+    <input disabled name="desc" data-init-value="${qualification['desc'] | h}" value="${qualification['desc'] | h}"></input>
     <div class="actions">
       <a href="#" class="edit"><img title="Bearbeiten" class="icon" src="/static/icons/edit.svg" /></a>
       <a href="#" hidden class="save"><img title="Speichern" class="icon" src="/static/icons/check.svg" /></a>

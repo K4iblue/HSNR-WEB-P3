@@ -1,10 +1,16 @@
 <%inherit file="layout.mako"/>
+<%def name="head()">
+  <script defer src="/static/index.js"></script>
+</%def>
 <%def name="title()">
   Startseite
 </%def>
 <h2>Mitarbeiter - Statistiken</h2>
-<ul>
-  <li><span class="counter">${employees}</span> Mitarbeiter</li>
-  <li><span class="counter">${trainings}</span> Weiterbildungen</li>
-  <li><span class="counter">${participations}</span> Teilnahmen</li>
-</ul>
+<div class="counter-box">
+  <span class="counter" data-goal="${employees}"></span>
+  <span class="counter" data-goal="${trainings}"></span>
+  <span class="counter" data-goal="${participations}"></span>
+  <span>Mitarbeiter</span>
+  <span>Weiterbildungen</span>
+  <span>Teilnahmen</span>
+</div>

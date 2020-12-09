@@ -5,7 +5,7 @@
 <%def name="title()">
   Weiterbildung hinzufügen
 </%def>
-<h2>Weiterbildungen:</h2>
+<h2>Weiterbildung Hinzufügen:</h2>
 <label>Bezeichnung:</label>
 <input name="title"></input>
 <label>Beschreibung:</label>

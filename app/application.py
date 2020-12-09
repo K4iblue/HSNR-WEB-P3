@@ -44,6 +44,14 @@ class Application:
                     "trainings": self.trainings.get_all()
                 }
             )
+    @cherrypy.expose
+    def edit_training(self, index):
+        return View().editTraining(
+                {
+                    "training": self.trainings.get_by_index(int(index))
+                }
+            )
+
 
     @cherrypy.expose
     def edit_certificates(self):
