@@ -190,6 +190,7 @@ class Application:
     @cherrypy.expose
     def report_employees(self):
         employees = self.employees.get_all()
+        employees = sorted(employees, key=lambda e: e['name'])
         for employee in employees:
             trainings = self.participations.query(
                 '''
@@ -212,7 +213,26 @@ class Application:
 
     @cherrypy.expose
     def report_trainings(self):
-        return
+        trainings = self.trainings.get_all()
+        for training in trainings:
+            participants = self.employees.query(
+                '''
+                    SELECT e.id, e.name, e.surname, e.degree, e.occupation
+                    FROM employee e
+                    JOIN participation p
+                      ON e.id = p.employee_id
+                      AND p.training_id = ?
+                ''',
+                [training.id]
+            )
+            participants = self.employees.deserialize_result(participants)
+            training.participants = participants
+        trainings = sorted(trainings, key=lambda t: t['title'])
+        return View().reportTrainings(
+            {
+                "trainings": trainings
+            }
+        )
 
     @cherrypy.expose
     def report_certificates(self):

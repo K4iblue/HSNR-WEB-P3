@@ -1,13 +1,10 @@
 <%inherit file="layout.mako"/>
-<%def name="head()">
-##   <script defer src="/static/edit-employees.js"></script>
-</%def>
 <%def name="title()">
   Mitarbeiter Auswertung
 </%def>
 <h2>Mitarbeiter:</h2>
 % for employee in employees:
-  <div data-employee-id="${employee['id']}" class="list-report list-employees-report">
+  <div>
     <label>${employee['name'] | h} ${employee['surname'] | h}:</label>
     % for training in employee['trainings']:
         <div class="report-training">
