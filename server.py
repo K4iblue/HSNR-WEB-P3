@@ -39,7 +39,7 @@ def main():
             'tools.gzip.on': True
         }
     }
-    cherrypy.tree.mount(Application(employees, trainings, certificates, qualifications), '/', static_config)
+    cherrypy.tree.mount(Application(employees, trainings, certificates, qualifications, granted_qualifications, owned_certificates, owned_qualifications), '/', static_config)
     cherrypy.tree.mount(EmployeeApi(employees, owned_certificates, owned_qualifications), '/api/employee')
     cherrypy.tree.mount(CertificateApi(certificates), '/api/certificate')
     cherrypy.tree.mount(TraingApi(trainings, granted_qualifications), '/api/training')

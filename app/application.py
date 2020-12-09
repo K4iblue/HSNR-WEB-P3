@@ -4,7 +4,15 @@ from .db.database import Database
 from .view import View
 
 class Application:
-    def __init__(self, employees: Database, trainings: Database, certificates: Database, qualifications: Database):
+    def __init__(
+            self, 
+            employees: Database, 
+            trainings: Database, 
+            certificates: Database, 
+            qualifications: Database, 
+            granted_qualifications: Database, 
+            owned_certificates: Database, 
+            owned_qualifications: Database):
         self.employees = employees
         self.trainings = trainings
         self.certificates = certificates
@@ -51,14 +59,22 @@ class Application:
     @cherrypy.expose
     def edit_training(self, index):
         training = self.trainings.get_by_index(int(index))
-        print(training["certificate_id"])
         certificate = self.certificates.get_by_index(int(training["certificate_id"]))
+        qualifications = self.qualifications.query(
+        '''
+            SELECT id, title, desc
+            FROM qualifications q
+            JOIN training_grants_qualification t
+              ON q.id = t.qualification_id
+            WHERE t.traning_id = ?
+        ''', [training.id])
+        qualifications = self.qualifications.deserialize_result(qualifications)
         return View().editTraining(
                 {
                     "training": training,
                     "certificate": certificate,
-                    "certificates": self.certificates.get_all(),
-                    "all_qualifications": self.qualifications.get_all()
+                    "all_qualifications": self.qualifications.get_all(),
+                    "qualifications": qualifications
                 }
             )
 

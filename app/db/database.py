@@ -84,7 +84,7 @@ class Database():
         c.execute(f'SELECT * FROM {self.tableName}')
         query_result = c.fetchall()
         conn.close()
-        return self.__deserialize_result(query_result)
+        return self.deserialize_result(query_result)
 
     def count(self):
         conn = sqlite3.connect(self.filename)
@@ -94,7 +94,7 @@ class Database():
         conn.close()
         return count
 
-    def __deserialize_result(self, result):
+    def deserialize_result(self, result):
         fields = list(self.columns.items())
         r = []
         for query_result_row in result:
