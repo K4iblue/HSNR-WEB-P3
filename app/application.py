@@ -166,7 +166,40 @@ class Application:
 
     @cherrypy.expose
     def participation_employees(self):
-        return
+        return View().participationEmployees(
+                {
+                    "employees": self.employees.get_all()
+                }
+            )
+
+    @cherrypy.expose
+    def participation_employee(self, index):
+        employee = self.employees.get_by_index(int(index))
+
+        trainings = self.trainings.get_all()
+        participations = self.participations.query(
+            '''
+                SELECT *
+                FROM participation
+                WHERE employee_id = ?
+            ''',
+            [index]
+        )
+        participations_ids = list(map(lambda m: m.training_id, participations))
+        trainings_assigned = list(filter(lambda m: m.id in participations_ids, trainings))
+        trainings_available = list(filter(lambda m: m.id not in participations_ids, trainings))
+        participations_dict = {}
+        for p in participations:
+            participations_dict[p.training_id] = p.status
+
+        return View().participationEmployee(
+                {
+                    "employee": employee,
+                    "trainings_assigned": trainings_assigned,
+                    "trainings_available": trainings_available,
+                    "participations": participations_dict
+                }
+            )
 
     @cherrypy.expose
     def participation_trainings(self):

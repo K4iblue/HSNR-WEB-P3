@@ -41,7 +41,11 @@ class View:
         return template.render(**data)
 
     def participationEmployees(self, data):
-        template = self.lookup.get_template('participate-employees.mako')
+        template = self.lookup.get_template('participation-employees.mako')
+        return template.render(**data)
+
+    def participationEmployee(self, data):
+        template = self.lookup.get_template('participation-employee.mako')
         return template.render(**data)
 
     def participateTrainings(self, data):
