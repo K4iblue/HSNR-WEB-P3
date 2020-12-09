@@ -33,16 +33,30 @@
 </div>
 <br/>
 <h2>Qualifikationen:</h2>
-<br/>
-<br/>
+<div class="list-header list-qualifications">
+  <div>Bezeichnung</div>
+  <div>Beschreibung</div>
+  <div>Aktionen</div>
+</div>
+% for qualification in qualifications:
+  <div data-qualification-id="${qualification['id']}" class="list-row list-qualifications">
+    <input disabled name="title" data-init-value="${qualification['title'] | h}" value="${qualification['title'] | h}"></input>
+    <input disabled name="desc" data-init-value="${qualification['desc'] | h}" value="${qualification['desc'] | h}"></input>
+    <div class="actions">
+      <a href="#" class="delete"><img title="Löschen" class="icon" src="/static/icons/trash-2.svg" /></a>
+    </div>
+  </div>
+% endfor
+
+  <h3>Qualifikation hinzufügen</h3>
   <select name="qualification">
   % for qualification in all_qualifications:
     <option value="${qualification["id"]}">${qualification["title"]}</option>
   % endfor
   </select>
+  <a href="#" class="add">Hinzufügen</a>
 <br/>
 <br/>
 <div class="flex-buttons">
-  <a href="#" class="certificate save button">Speichern</a>
   <a href="/edit-trainings" class="back button">Zurück</a>
 </div>

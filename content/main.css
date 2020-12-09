@@ -46,7 +46,7 @@
 input, textarea, select, .button {
   border: none;
   outline: 1px solid #aaaaaa;
-  background-color: transparent;
+  background-color: #272727;
 }
 
 input:disabled, textarea:disabled, select:disabled {

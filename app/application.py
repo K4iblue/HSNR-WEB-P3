@@ -73,6 +73,7 @@ class Application:
                 {
                     "training": training,
                     "certificate": certificate,
+                    "certificates": self.certificates.get_all(),
                     "all_qualifications": self.qualifications.get_all(),
                     "qualifications": qualifications
                 }

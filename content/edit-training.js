@@ -26,3 +26,15 @@ document.querySelectorAll(".training .save").forEach((e) =>
     });
   })
 );
+document.querySelector(".add").addEventListener("click", function (e) {
+  const qualification_id = document.querySelector('[name="qualification"]').value;
+  const training_id = document.querySelector('[name="id"]').value
+
+  fetch("/api/training/add-qualification", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({qualification_id, training_id}),
+  }).then(() => {
+    location.reload();
+  });
+})
