@@ -6,6 +6,7 @@
   Weiterbildung hinzufügen
 </%def>
 <h2>Weiterbildungen:</h2>
+<input name="id" value="${training["id"]}" hidden/>
 <label for="title">Bezeichnung:</label>
 <input name="title" value="${training["title"] | h}"></input>
 <label for="desc">Beschreibung:</label>

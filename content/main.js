@@ -1,1 +1,1 @@
-document.querySelector('[href="'+window.location.pathname+'"]').classList.add("nav-current");
+document.querySelector('[href="'+window.location.pathname+'"]')?.classList.add("nav-current");
