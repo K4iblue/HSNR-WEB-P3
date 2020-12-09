@@ -12,6 +12,10 @@ class View:
         template = self.lookup.get_template('edit-employees.mako')
         return template.render(**data)
 
+    def viewEmployee(self, data):
+        template = self.lookup.get_template('view-employee.mako')
+        return template.render(**data)
+
     def editCertificates(self, data):
         template = self.lookup.get_template('edit-certificates.mako')
         return template.render(**data)

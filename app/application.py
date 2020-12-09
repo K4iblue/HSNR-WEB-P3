@@ -12,11 +12,16 @@ class Application:
             qualifications: Database, 
             granted_qualifications: Database, 
             owned_certificates: Database, 
-            owned_qualifications: Database):
+            owned_qualifications: Database,
+            participations: Database):
         self.employees = employees
         self.trainings = trainings
         self.certificates = certificates
         self.qualifications = qualifications
+        self.granted_qualifications = granted_qualifications
+        self.owned_certificates = owned_certificates
+        self.owned_qualifications = owned_qualifications
+        self.participations = participations
 
     @cherrypy.expose
     def index(self):
@@ -42,6 +47,45 @@ class Application:
             )
 
     @cherrypy.expose
+    def view_employee(self, index):
+        certificates = self.certificates.query(
+            '''
+                SELECT id, title, desc, qualifies
+                FROM certificate c
+                JOIN employee_owns_certificate e
+                  ON c.id = e.certificate_id
+                WHERE e.employee_id = ?
+            ''',
+            [index]
+        )
+        qualifications = self.qualifications.query(
+            '''
+                SELECT id, title, desc
+                FROM qualification q
+                JOIN employee_owns_qualification e
+                  ON q.id = e.qualification_id
+                WHERE e.employee_id = ?
+            ''',
+            [index]
+        )
+        participations = self.participations.query(
+            '''
+                SELECT *
+                FROM participation
+                WHERE employee_id = ?
+            ''',
+            [index]
+        )
+        return View().viewEmployee(
+            {
+                "employee": self.employees.get_by_index(int(index)),
+                "certificates": self.certificates.deserialize_result(certificates),
+                "qualifications": self.qualifications.deserialize_result(qualifications),
+                "participations": self.participations.deserialize_result(participations)
+            }
+        )
+
+    @cherrypy.expose
     def add_training(self):
         return View().addTraining(
                 {
@@ -61,13 +105,15 @@ class Application:
         training = self.trainings.get_by_index(int(index))
         certificate = self.certificates.get_by_index(int(training["certificate_id"]))
         qualifications = self.qualifications.query(
-        '''
-            SELECT id, title, desc
-            FROM qualification q
-            JOIN training_grants_qualification t
-              ON q.id = t.qualification_id
-            WHERE t.training_id = ?
-        ''', [training.id])
+            '''
+                SELECT id, title, desc
+                FROM qualification q
+                JOIN training_grants_qualification t
+                  ON q.id = t.qualification_id
+                WHERE t.training_id = ?
+            ''', 
+            [training.id]
+        )
         qualifications = self.qualifications.deserialize_result(qualifications)
         return View().editTraining(
                 {

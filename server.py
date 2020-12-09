@@ -8,6 +8,7 @@ from app.model.training import Training
 from app.model.training import TrainingGrantsQualification
 from app.model.certificate import Certificate
 from app.model.qualification import Qualification
+from app.model.participation import Participation
 import sys
 import os
 import cherrypy
@@ -25,6 +26,7 @@ def main():
     granted_qualifications = Database(TrainingGrantsQualification)
     certificates = Database(Certificate)
     qualifications = Database(Qualification)
+    participations = Database(Participation)
 
     try:
         current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -39,7 +41,7 @@ def main():
             'tools.gzip.on': True
         }
     }
-    cherrypy.tree.mount(Application(employees, trainings, certificates, qualifications, granted_qualifications, owned_certificates, owned_qualifications), '/', static_config)
+    cherrypy.tree.mount(Application(employees, trainings, certificates, qualifications, granted_qualifications, owned_certificates, owned_qualifications, participations), '/', static_config)
     cherrypy.tree.mount(EmployeeApi(employees, owned_certificates, owned_qualifications), '/api/employee')
     cherrypy.tree.mount(CertificateApi(certificates), '/api/certificate')
     cherrypy.tree.mount(TraingApi(trainings, granted_qualifications), '/api/training')
