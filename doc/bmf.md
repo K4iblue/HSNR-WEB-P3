@@ -14,7 +14,7 @@ date: 10.12.2020
 
 Die Anwendung "Mitarbeiter Qualifizierung" ermöglicht das Erfassen von Mitarbeitern, Weiterbildungen, Zertifikaten und Qualifizierungen.
 Mitarbeiter können an Weiterbildungen teilnehmen und erlangen dadurch neue Zertifikate und Qualifikationen.
-Desweiteren stehen Funktionen zur Auswertung zur verfügung welche eine Übersicht über alle Mitarbeiter und deren Zertifikate und Qualifikationen liefern.
+Des weiteren stehen Funktionen zur Auswertung zur Verfügung welche eine Übersicht über alle Mitarbeiter und deren Zertifikate und Qualifikationen liefern.
 
 ### Übersicht der fachlichen Funktionen
 
@@ -24,7 +24,7 @@ Hier wird die Anzahl der bereits erfassten Mitarbeiter, Weiterbildungen und der 
 
 #### Pflege
 
-Die Pflege Seiten stellen Funktionalität zur Verwaltung der Daten zur verfügung.
+Die Pflege Seiten stellen Funktionalität zur Verwaltung der Daten zur Verfügung.
 Es können neue Mitarbeiter, Weiterbildungen, Zertifikate und Qualifikationen angelegt werden.
 Den Weiterbildungen können hier die Zertifikate und Qualifikationen zugeordnet werden welche die Mitarbeiter durch eine erfolgreiche Teilnahme erlangen können.
 
@@ -50,53 +50,19 @@ Die Auswertungsseiten liefern einen Überblick über aktuelle Teilnahmen inklusi
 
 #### API
 
-### employee_api.py
+### training_api.py, qualification_api.py, employee_api.py und participation_api.py
 
 #### Zweck
 
-#### Aufbau
-
-#### Zusammenwirken mit anderen Komponenten
-
-#### API
-
-### training_api.py
-
-#### Zweck
+Die APIs ermöglichen es die Tabellen des jeweiligen Models (z.B. Employee oder Training) zu manipulieren. Dies wir benötigt um bequem über JavaScript Änderungen vornehmen zu können.
 
 #### Aufbau
 
-#### Zusammenwirken mit anderen Komponenten
-
-#### API
-
-### participation_api.py
-
-#### Zweck
-
-#### Aufbau
+Die API benötigen nur das Jeweilige Database Objekt des Models welches die API repräsentieren soll.
 
 #### Zusammenwirken mit anderen Komponenten
 
-#### API
-
-### certificate_api.py
-
-#### Zweck
-
-#### Aufbau
-
-#### Zusammenwirken mit anderen Komponenten
-
-#### API
-
-### qualification_api.py
-
-#### Zweck
-
-#### Aufbau
-
-#### Zusammenwirken mit anderen Komponenten
+Die APIs exposen eigene API Schnittstellen, welche von dem Frontend aufgerufen werden. Somit sind sie von anderen Server Komponenten unabhängig.
 
 #### API
 
@@ -255,6 +221,8 @@ Diese Datenbank ist in folgende Tabellen unterteilt.
 - participation
 
 ## Konfiguration
+
+Für die Konfiguration haben wir uns an der Vorlage aus dem ersten Praktikum orientiert und dieser erweitert. Wir haben ein static mapping für das `content` Verzeichnis, dass dieses über `/static/...` erreicht werden kann. Wir haben das static mapping nicht wie in der Vorlage der ersten Praktikums auf den root gemappt um somit besser erkennen zu können, welche Inhalte statisch sind und welche nicht. Außerdem haben wir für den statischen Inhalt `gzip` aktiviert, da wir fanden, dass es ein cooles Feature ist. Wir haben die Application Klasse auf den root gemountet, darüber werden auch alle views erreicht. Außerdem haben wir verschiedene APIs für z.B. Mitarbeiter und Qualifikationen an jeweils `/api/MODEL` gemountet also z.B. `/api/employee/`.
 
 ## Durchführung und Ergebnis der geforderten Prüfungen
 
