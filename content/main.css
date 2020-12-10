@@ -28,6 +28,14 @@
   grid-template-columns: 0.5fr 1fr 0.5fr 0.5fr 0.75fr 85px;
 }
 
+.list-participation-employees {
+  grid-template-columns: 0.5fr 1fr 0.5fr 0.5fr 0.75fr;
+}
+
+.list-participation-employees-action {
+  grid-template-columns: 0.5fr 1fr 0.5fr 0.5fr 85px;
+}
+
 .list-header > div, label {
   font-weight: bold;
   color: #b5bd68;

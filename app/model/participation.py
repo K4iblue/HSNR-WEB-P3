@@ -10,6 +10,9 @@ class Status(IntEnum):
     UNSUCCESSFUL = 4
     SUCCESSFUL = 5
 
+def render_status(string):
+    return {"1": "Angemeldet", "2": "Nimmt teil", "3": "Storniert", "4": "Nicht erfolgreich beendet", "5": "Erfolgreich beendet"}[string]
+
 @db_model()
 class Participation:
 
