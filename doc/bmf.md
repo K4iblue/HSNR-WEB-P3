@@ -122,6 +122,18 @@ Die Auswertungsseiten liefern einen Überblick über aktuelle Teilnahmen inklusi
 
 ## Datenablage
 
+Die Daten der Anwendung werden in einer SQLite Datenbank gespeichert.
+Diese Datenbank ist in folgende Tabellen unterteilt.
+
+- employee
+- employee_owns_certificate
+- employee_owns_qualification
+- training
+- training_grants_qualification
+- certificate
+- qualification
+- participation
+
 ## Konfiguration
 
 ## Durchführung und Ergebnis der geforderten Prüfungen
