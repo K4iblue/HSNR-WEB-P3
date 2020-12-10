@@ -70,9 +70,7 @@ Die APIs exposen eigene API Schnittstellen, welche von dem Frontend aufgerufen w
 
 #### Zweck
 
-Die View Klasse verwaltet die Mako Templates der einzelnen Seiten dieser Anwendung.
-
-#### Aufbau
+Die View Klasse rendert die Mako Templates der einzelnen Seiten dieser Anwendung.
 
 #### Zusammenwirken mit anderen Komponenten
 
@@ -82,7 +80,7 @@ Der Hauptkontroller bezieht den HTML Code der Seiten von dieser Klasse.
 
 `def __init__(self)`
         
-Der Constructor erzeugt ein Mako TemplateLookup.
+Der Constructor erzeugt ein Mako TemplateLookup welches die Templates aus dem templates Verzeichnis bezieht.
 
 `def index(self, data)`
 
@@ -154,8 +152,6 @@ Gibt den HTML Code der Zertifikatauswertung zurück.
 
 Die Klasse bietet eine Schnittstelle zur SQlite Datenbank.
 Die Datenmodels können per decorator aufgesetzt werden was ein automatisiertes erstellen der Tabellen erlaubt.
-
-#### Aufbau
 
 #### Zusammenwirken mit anderen Komponenten
 
