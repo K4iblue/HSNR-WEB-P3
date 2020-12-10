@@ -40,23 +40,5 @@ class EmployeeApi:
         self.employees.insert(employee)
 
     @cherrypy.expose
-    @cherrypy.tools.json_in()
-    def add_certificate(self):
-        input_json = cherrypy.request.json
-        owned_certificate = EmployeeOwnsCertificate()
-        owned_certificate.employee_id = input_json['employee_id']
-        owned_certificate.certificate_id = input_json['certificate_id']
-        self.owned_certificates.insert(owned_certificate)
-
-    @cherrypy.expose
-    @cherrypy.tools.json_in()
-    def add_qualification(self):
-        input_json = cherrypy.request.json
-        owned_qualification = EmployeeOwnsQualification()
-        owned_qualification.employee_id = input_json['employee_id']
-        owned_qualification.qualification_id = input_json['qualification_id']
-        self.owned_qualifications.insert(owned_qualification)
-
-    @cherrypy.expose
     def delete(self, index):
         self.employees.delete(index)
