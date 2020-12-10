@@ -166,12 +166,12 @@
 <h1 id="mitarbeiter-qualifizierung">Mitarbeiter Qualifizierung</h1>
 <h2 id="allgemeine-beschreibung">Allgemeine Beschreibung</h2>
 <h3 id="aufgabe-der-anwendung">Aufgabe der Anwendung</h3>
-<p>Die Anwendung “Mitarbeiter Qualifizierung” ermöglicht das Erfassen von Mitarbeitern, Weiterbildungen, Zertifikaten und Qualifizierungen. Mitarbeiter können an Weiterbildungen teilnehmen und erlangen dadurch neue Zertifikate und Qualifikationen. Desweiteren stehen Funktionen zur Auswertung zur verfügung welche eine Übersicht über alle Mitarbeiter und deren Zertifikate und Qualifikationen liefern.</p>
+<p>Die Anwendung “Mitarbeiter Qualifizierung” ermöglicht das Erfassen von Mitarbeitern, Weiterbildungen, Zertifikaten und Qualifizierungen. Mitarbeiter können an Weiterbildungen teilnehmen und erlangen dadurch neue Zertifikate und Qualifikationen. Des weiteren stehen Funktionen zur Auswertung zur Verfügung welche eine Übersicht über alle Mitarbeiter und deren Zertifikate und Qualifikationen liefern.</p>
 <h3 id="übersicht-der-fachlichen-funktionen">Übersicht der fachlichen Funktionen</h3>
 <h4 id="startseite">Startseite</h4>
 <p>Hier wird die Anzahl der bereits erfassten Mitarbeiter, Weiterbildungen und der gesamten Teilnahmen an diesen angezeigt.</p>
 <h4 id="pflege">Pflege</h4>
-<p>Die Pflege Seiten stellen Funktionalität zur Verwaltung der Daten zur verfügung. Es können neue Mitarbeiter, Weiterbildungen, Zertifikate und Qualifikationen angelegt werden. Den Weiterbildungen können hier die Zertifikate und Qualifikationen zugeordnet werden welche die Mitarbeiter durch eine erfolgreiche Teilnahme erlangen können.</p>
+<p>Die Pflege Seiten stellen Funktionalität zur Verwaltung der Daten zur Verfügung. Es können neue Mitarbeiter, Weiterbildungen, Zertifikate und Qualifikationen angelegt werden. Den Weiterbildungen können hier die Zertifikate und Qualifikationen zugeordnet werden welche die Mitarbeiter durch eine erfolgreiche Teilnahme erlangen können.</p>
 <h4 id="teilnahme">Teilnahme</h4>
 <p>Auf den Teilnahme Seiten hat der Nutzer die Möglichkeit Teilnahmen an Weiterbildungen zu verwalten. Die Sichtweise Mitarbeiter listet alle erfassten Mitarbeiter im System auf und ermöglicht über eine Detailansicht die Mitarbeiter für eine Weiterbildung einzutragen. In der Weiterbildungsansicht werden alle laufenden Weiterbildungen gelistet und über die Detailansicht kann der Status der Teilnahmen für die einzelnen Mitarbeiter angepasst werden.</p>
 <h4 id="auswertungen">Auswertungen</h4>
@@ -230,6 +230,7 @@
 <li>participation</li>
 </ul>
 <h2 id="konfiguration">Konfiguration</h2>
+<p>Für die Konfiguration haben wir uns an der Vorlage aus dem ersten Praktikum orientiert und dieser erweitert. Wir haben ein static mapping für das <code>content</code> Verzeichnis, dass dieses über <code>/static/...</code> erreicht werden kann. Wir haben das static mapping nicht wie in der Vorlage der ersten Praktikums auf den root gemappt um somit besser erkennen zu können, welche Inhalte statisch sind und welche nicht. Außerdem haben wir für den statischen Inhalt <code>gzip</code> aktiviert, da wir fanden, dass es ein cooles Feature ist. Wir haben die Application Klasse auf den root gemountet, darüber werden auch alle views erreicht. Außerdem haben wir verschiedene APIs für z.B. Mitarbeiter und Qualifikationen an jeweils <code>/api/MODEL</code> gemountet also z.B. <code>/api/employee/</code>.</p>
 <h2 id="durchführung-und-ergebnis-der-geforderten-prüfungen">Durchführung und Ergebnis der geforderten Prüfungen</h2>
 <h3 id="markup-validierung">Markup Validierung</h3>
 <p>Wir haben den Source Code aller Routen mittels dem <a href="https://validator.w3.org/nu/">Markdown Validator</a> getestet.</p>
