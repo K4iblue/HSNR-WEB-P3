@@ -145,11 +145,7 @@
 <li><a href="#beschreibung-der-komponenten-des-servers">Beschreibung der Komponenten des Servers</a>
 <ul>
 <li><a href="#application.py">application.py</a></li>
-<li><a href="#employee_api.py">employee_api.py</a></li>
-<li><a href="#training_api.py">training_api.py</a></li>
-<li><a href="#participation_api.py">participation_api.py</a></li>
-<li><a href="#certificate_api.py">certificate_api.py</a></li>
-<li><a href="#qualification_api.py">qualification_api.py</a></li>
+<li><a href="#training_api.py-qualification_api.py-employee_api.py-und-participation_api.py">training_api.py, qualification_api.py, employee_api.py und participation_api.py</a></li>
 <li><a href="#view.py">view.py</a></li>
 <li><a href="#database.py">database.py</a></li>
 </ul></li>
@@ -179,44 +175,137 @@
 <h2 id="beschreibung-der-komponenten-des-servers">Beschreibung der Komponenten des Servers</h2>
 <h3 id="application.py">application.py</h3>
 <h4 id="zweck">Zweck</h4>
+<p>Der Application Controller sendet die gerenderten Templates, welche über den Browser direkt abgefragt werden. Der Controller holt sich die Daten aus der Datenbank und befüllt die Templates mit diesen.</p>
 <h4 id="aufbau">Aufbau</h4>
+<p>Der Application Controller hat benötigt Zugriff auf alle Datenbank Instanzen für alle Models.</p>
 <h4 id="zusammenwirken-mit-anderen-komponenten">Zusammenwirken mit anderen Komponenten</h4>
+<p>Der Application Controller wird nicht von anderen Komponenten aufgerufen und liefert direkt dem Browser das HTML.</p>
 <h4 id="api">API</h4>
-<h3 id="employee_api.py">employee_api.py</h3>
+<pre><code>def __init__(
+  self, 
+  employees: Database,
+  trainings: Database, 
+  certificates: Database, 
+  qualifications: Database, 
+  granted_qualifications: Database,
+  owned_certificates: Database, 
+  owned_qualifications: Database,
+  participations: Database):</code></pre>
+<p>Der Constructor benötigt alle Datenbanken.</p>
+<p><code>def index(self)</code></p>
+<p>Gibt den HTML Code der Startseite zurück.</p>
+<p><code>def editEmployees(self)</code></p>
+<p>Gibt den HTML Code der Mitarbeiter Pflege zurück.</p>
+<p><code>def viewEmployee(self)</code></p>
+<p>Gibt den HTML Code der Mitarbeiter Detailansicht zurück.</p>
+<p><code>def editCertificates(self)</code></p>
+<p>Gibt den HTML Code der Zertifikat Pflege zurück.</p>
+<p><code>def editQualifications(self)</code></p>
+<p>Gibt den HTML Code der Qualifikationen Pflege zurück.</p>
+<p><code>def editTrainings(self)</code></p>
+<p>Gibt den HTML Code der Weiterbildungen Pflege zurück.</p>
+<p><code>def viewTraining(self)</code></p>
+<p>Gibt den HTML Code der Weiterbildungs Detailansicht zurück.</p>
+<p><code>def editTraining(self)</code></p>
+<p>Gibt den HTML Code der Weiterbildungsbearbeitungsseite zurück.</p>
+<p><code>def addTraining(self)</code></p>
+<p>Gibt den HTML Code der Seite zum Hinzufügen einer Weiterbildung zurück.</p>
+<p><code>def participationEmployees(self)</code></p>
+<p>Gibt den HTML Code der Teilnahme Mitarbeiterübersicht zurück.</p>
+<p><code>def participationEmployee(self)</code></p>
+<p>Gibt den HTML Code der Bearbeitungsseite für Mitarbeiterteilnahmen zurück.</p>
+<p><code>def participationTrainings(self)</code></p>
+<p>Gibt den HTML Code der Teilnahme Weiterbildungsübersicht zurück.</p>
+<p><code>def participationTraining(self)</code></p>
+<p>Gibt den HTML Code der Bearbeitungsseite für Weiterbildungsteilnahmen zurück.</p>
+<p><code>def reportEmployees(self)</code></p>
+<p>Gibt den HTML Code der Mitarbeiterauswertung zurück.</p>
+<p><code>def reportTrainings(self)</code></p>
+<p>Gibt den HTML Code der Weiterbbildungsauswertung zurück.</p>
+<p><code>def reportCertificates(self)</code></p>
+<p>Gibt den HTML Code der Zertifikatauswertung zurück.</p>
+<h3 id="training_api.py-qualification_api.py-employee_api.py-und-participation_api.py">training_api.py, qualification_api.py, employee_api.py und participation_api.py</h3>
 <h4 id="zweck-1">Zweck</h4>
+<p>Die APIs ermöglichen es die Tabellen des jeweiligen Models (z.B. Employee oder Training) zu manipulieren. Dies wir benötigt um bequem über JavaScript Änderungen vornehmen zu können.</p>
 <h4 id="aufbau-1">Aufbau</h4>
+<p>Die API benötigen nur das Jeweilige Database Objekt des Models welches die API repräsentieren soll.</p>
 <h4 id="zusammenwirken-mit-anderen-komponenten-1">Zusammenwirken mit anderen Komponenten</h4>
+<p>Die APIs exposen eigene API Schnittstellen, welche von dem Frontend aufgerufen werden. Somit sind sie von anderen Server Komponenten unabhängig.</p>
 <h4 id="api-1">API</h4>
-<h3 id="training_api.py">training_api.py</h3>
-<h4 id="zweck-2">Zweck</h4>
-<h4 id="aufbau-2">Aufbau</h4>
-<h4 id="zusammenwirken-mit-anderen-komponenten-2">Zusammenwirken mit anderen Komponenten</h4>
-<h4 id="api-2">API</h4>
-<h3 id="participation_api.py">participation_api.py</h3>
-<h4 id="zweck-3">Zweck</h4>
-<h4 id="aufbau-3">Aufbau</h4>
-<h4 id="zusammenwirken-mit-anderen-komponenten-3">Zusammenwirken mit anderen Komponenten</h4>
-<h4 id="api-3">API</h4>
-<h3 id="certificate_api.py">certificate_api.py</h3>
-<h4 id="zweck-4">Zweck</h4>
-<h4 id="aufbau-4">Aufbau</h4>
-<h4 id="zusammenwirken-mit-anderen-komponenten-4">Zusammenwirken mit anderen Komponenten</h4>
-<h4 id="api-4">API</h4>
-<h3 id="qualification_api.py">qualification_api.py</h3>
-<h4 id="zweck-5">Zweck</h4>
-<h4 id="aufbau-5">Aufbau</h4>
-<h4 id="zusammenwirken-mit-anderen-komponenten-5">Zusammenwirken mit anderen Komponenten</h4>
-<h4 id="api-5">API</h4>
+<p><code>def __init__(self, database)</code></p>
+<p>Bei dem initialisieren der APIs wird ein Database object benötigt, welches das Model abbildet.</p>
+<p><code>def update(self)</code></p>
+<p>Bei dem update wird über den PostBody als JSON ein Objekt mitgeliefert, welches in der Datenbank aktualisiert werden soll.</p>
+<p><code>def insert(self)</code></p>
+<p>Bei dem insert wird über den PostBody als JSON ein Objekt mitgeliefert, welches in der Datenbank eingepflegt werden soll.</p>
+<p><code>def delete(self, index)</code></p>
+<p>Bei dem delete wird eine Eintrag mit den entsprechenden index aus der Datenbank gelöscht.</p>
 <h3 id="view.py">view.py</h3>
-<h4 id="zweck-6">Zweck</h4>
-<h4 id="aufbau-6">Aufbau</h4>
-<h4 id="zusammenwirken-mit-anderen-komponenten-6">Zusammenwirken mit anderen Komponenten</h4>
-<h4 id="api-6">API</h4>
+<h4 id="zweck-2">Zweck</h4>
+<p>Die View Klasse rendert die Mako Templates der einzelnen Seiten dieser Anwendung.</p>
+<h4 id="zusammenwirken-mit-anderen-komponenten-2">Zusammenwirken mit anderen Komponenten</h4>
+<p>Der Hauptkontroller bezieht den HTML Code der Seiten von dieser Klasse.</p>
+<h4 id="api-2">API</h4>
+<p><code>def __init__(self)</code></p>
+<p>Der Constructor erzeugt ein Mako TemplateLookup welches die Templates aus dem templates Verzeichnis bezieht.</p>
+<p><code>def index(self, data)</code></p>
+<p>Gibt den HTML Code der Startseite zurück.</p>
+<p><code>def editEmployees(self, data)</code></p>
+<p>Gibt den HTML Code der Mitarbeiter Pflege zurück.</p>
+<p><code>def viewEmployee(self, data)</code></p>
+<p>Gibt den HTML Code der Mitarbeiter Detailansicht zurück.</p>
+<p><code>def editCertificates(self, data)</code></p>
+<p>Gibt den HTML Code der Zertifikat Pflege zurück.</p>
+<p><code>def editQualifications(self, data)</code></p>
+<p>Gibt den HTML Code der Qualifikationen Pflege zurück.</p>
+<p><code>def editTrainings(self, data)</code></p>
+<p>Gibt den HTML Code der Weiterbildungen Pflege zurück.</p>
+<p><code>def viewTraining(self, data)</code></p>
+<p>Gibt den HTML Code der Weiterbildungs Detailansicht zurück.</p>
+<p><code>def editTraining(self, data)</code></p>
+<p>Gibt den HTML Code der Weiterbildungsbearbeitungsseite zurück.</p>
+<p><code>def addTraining(self, data)</code></p>
+<p>Gibt den HTML Code der Seite zum Hinzufügen einer Weiterbildung zurück.</p>
+<p><code>def participationEmployees(self, data)</code></p>
+<p>Gibt den HTML Code der Teilnahme Mitarbeiterübersicht zurück.</p>
+<p><code>def participationEmployee(self, data)</code></p>
+<p>Gibt den HTML Code der Bearbeitungsseite für Mitarbeiterteilnahmen zurück.</p>
+<p><code>def participationTrainings(self, data)</code></p>
+<p>Gibt den HTML Code der Teilnahme Weiterbildungsübersicht zurück.</p>
+<p><code>def participationTraining(self, data)</code></p>
+<p>Gibt den HTML Code der Bearbeitungsseite für Weiterbildungsteilnahmen zurück.</p>
+<p><code>def reportEmployees(self, data)</code></p>
+<p>Gibt den HTML Code der Mitarbeiterauswertung zurück.</p>
+<p><code>def reportTrainings(self, data)</code></p>
+<p>Gibt den HTML Code der Weiterbbildungsauswertung zurück.</p>
+<p><code>def reportCertificates(self, data)</code></p>
+<p>Gibt den HTML Code der Zertifikatauswertung zurück.</p>
 <h3 id="database.py">database.py</h3>
-<h4 id="zweck-7">Zweck</h4>
-<h4 id="aufbau-7">Aufbau</h4>
-<h4 id="zusammenwirken-mit-anderen-komponenten-7">Zusammenwirken mit anderen Komponenten</h4>
-<h4 id="api-7">API</h4>
+<h4 id="zweck-3">Zweck</h4>
+<p>Die Klasse bietet eine Schnittstelle zur SQlite Datenbank. Die Datenmodels können per decorator aufgesetzt werden was ein automatisiertes erstellen der Tabellen erlaubt.</p>
+<h4 id="zusammenwirken-mit-anderen-komponenten-3">Zusammenwirken mit anderen Komponenten</h4>
+<p>Instanzen der Datenbanken werden an die API controller übergeben.</p>
+<h4 id="api-3">API</h4>
+<p><code>def __init__(self, model)</code></p>
+<p>Der Contruktor bekommt den Typ des Models übergeben und ruft <code>__createTable()</code> auf.</p>
+<p><code>def __createTable(self)</code></p>
+<p>Erzeugt aus den Metadaten des Models eine passende Tabelle in der Datenbank falls diese noch nicht existiert.</p>
+<p><code>def insert(self, obj)</code></p>
+<p>Fügt ein neues Objekt der Tabelle hinzu.</p>
+<p><code>def update(self, obj)</code></p>
+<p>Aktualisiert die Daten eines bereits existierenden Objektes in der Tabelle.</p>
+<p><code>def get_all(self)</code></p>
+<p>Liefert alle Einträge der Tabelle.</p>
+<p><code>def get_by_index(self, index)</code></p>
+<p>Gibt den Eintrag entsprechend des übergebenen Indexes zurück.</p>
+<p><code>def delete(self, index)</code></p>
+<p>Löscht den Eintrag entsprechend des übergebenen Indexes.</p>
+<p><code>def count(self)</code></p>
+<p>Gibt die Anzahl der Einträge zurück.</p>
+<p><code>def query(self, sql)</code></p>
+<p>Erlaubt das Ausführen eines beliebiegen SQL Queries welches als String übergeben wird.</p>
+<p><code>def deserialize_result(self, result, additional_fields = None)</code></p>
+<p>Erzeugt ein Model/Liste von Models anhand des Rückgabewertes eines queries. Über additional fields können zusätzliche Felder deserialisiert werden, dabei ist zu beachten dass diese Felder im Query erst nach den ursprünglichen Feldern des Models zurückgegeben werden dürfen. Außerdem muss im Query die Reihenfolge der Felder mit denen im Model übereinstimmen.</p>
 <h2 id="datenablage">Datenablage</h2>
 <p>Die Daten der Anwendung werden in einer SQLite Datenbank gespeichert. Diese Datenbank ist in folgende Tabellen unterteilt.</p>
 <ul>
