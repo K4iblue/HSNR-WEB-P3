@@ -114,11 +114,59 @@ Die Auswertungsseiten liefern einen Überblick über aktuelle Teilnahmen inklusi
 
 #### Zweck
 
+Die Klasse bietet eine Schnittstelle zur SQlite Datenbank.
+Die Datenmodels können mit per decorator aufgesetzt werden was ein automatisiertes erstellen der Tabellen erlaubt.
+
 #### Aufbau
 
 #### Zusammenwirken mit anderen Komponenten
 
+Instanzen der Datenbanken werden an die API controller übergeben.
+
 #### API
+
+`def __init__(self, model)`
+
+Der Contruktor bekommt den Typ des Models übergeben und ruft `__createTable()` auf.
+
+`def __createTable(self)`
+
+Erzeugt aus den Metadaten des Models eine passende Tabelle in der Datenbank falls diese noch nicht existiert.
+
+`def insert(self, obj)`
+
+Fügt ein neues Objekt der Tabelle hinzu.
+
+`def update(self, obj)`
+
+Aktualisiert die Daten eines bereits existierenden Objektes in der Tabelle.
+
+`def get_all(self)`
+
+Liefert alle Einträge der Tabelle.
+
+`def get_by_index(self, index)`
+
+Gibt den Eintrag entsprechend des übergebenen Indexes zurück.
+
+`def delete(self, index)`
+
+Löscht den Eintrag entsprechend des übergebenen Indexes.
+
+`def count(self)`
+
+Gibt die Anzahl der Einträge zurück.
+
+`def query(self, sql)`
+
+Erlaubt das Ausführen eines beliebiegen SQL Queries welches als String übergeben wird.
+
+`def deserialize_result(self, result, additional_fields = None)`
+
+Erzeugt ein Model/Liste von Models anhand des Rückgabewertes eines queries.
+Über additional fields können zusätzliche Felder deserialisiert werden, dabei ist zu beachten dass diese Felder im Query erst nach den ursprünglichen Feldern des Models zurückgegeben werden dürfen.
+Außerdem muss im Query die Reihenfolge der Felder mit denen im Model übereinstimmen.
+
 
 ## Datenablage
 
