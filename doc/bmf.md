@@ -44,9 +44,15 @@ Die Auswertungsseiten liefern einen Überblick über aktuelle Teilnahmen inklusi
 
 #### Zweck
 
+Der Application Controller sendet die gerenderten Templates, welche über den Browser direkt abgefragt werden. Der Controller holt sich die Daten aus der Datenbank und befüllt die Templates mit diesen.
+
 #### Aufbau
 
+Der Application Controller hat benötigt Zugriff auf alle Datenbank Instanzen für alle Models.
+
 #### Zusammenwirken mit anderen Komponenten
+
+Der Application Controller wird nicht von anderen Komponenten aufgerufen und liefert direkt dem Browser das HTML.
 
 #### API
 
@@ -65,6 +71,22 @@ Die API benötigen nur das Jeweilige Database Objekt des Models welches die API 
 Die APIs exposen eigene API Schnittstellen, welche von dem Frontend aufgerufen werden. Somit sind sie von anderen Server Komponenten unabhängig.
 
 #### API
+
+`def __init__(self, database)`
+
+Bei dem initialisieren der APIs wird ein Database object benötigt, welches das Model abbildet.
+
+`def update(self)`
+
+Bei dem update wird über den PostBody als JSON ein Objekt mitgeliefert, welches in der Datenbank aktualisiert werden soll.
+
+`def insert(self)`
+
+Bei dem insert wird über den PostBody als JSON ein Objekt mitgeliefert, welches in der Datenbank eingepflegt werden soll.
+
+`def delete(self, index)`
+
+Bei dem delete wird eine Eintrag mit den entsprechenden index aus der Datenbank gelöscht.
 
 ### view.py
 
