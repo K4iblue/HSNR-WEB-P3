@@ -56,6 +56,85 @@ Der Application Controller wird nicht von anderen Komponenten aufgerufen und lie
 
 #### API
 
+```
+def __init__(
+  self, 
+  employees: Database,
+  trainings: Database, 
+  certificates: Database, 
+  qualifications: Database, 
+  granted_qualifications: Database,
+  owned_certificates: Database, 
+  owned_qualifications: Database,
+  participations: Database):
+```
+        
+Der Constructor benötigt alle Datenbanken.
+
+`def index(self)`
+
+Gibt den HTML Code der Startseite zurück.
+
+`def editEmployees(self)`
+    
+Gibt den HTML Code der Mitarbeiter Pflege zurück.
+
+`def viewEmployee(self)`
+        
+Gibt den HTML Code der Mitarbeiter Detailansicht zurück.
+
+`def editCertificates(self)`
+
+Gibt den HTML Code der Zertifikat Pflege zurück.
+
+`def editQualifications(self)`
+
+Gibt den HTML Code der Qualifikationen Pflege zurück.
+
+`def editTrainings(self)`
+
+Gibt den HTML Code der Weiterbildungen Pflege zurück.
+
+`def viewTraining(self)`
+
+Gibt den HTML Code der Weiterbildungs Detailansicht zurück.
+
+`def editTraining(self)`
+
+Gibt den HTML Code der Weiterbildungsbearbeitungsseite zurück.
+
+`def addTraining(self)`
+
+Gibt den HTML Code der Seite zum Hinzufügen einer Weiterbildung zurück.
+
+`def participationEmployees(self)`
+
+Gibt den HTML Code der Teilnahme Mitarbeiterübersicht zurück.
+
+`def participationEmployee(self)`
+
+Gibt den HTML Code der Bearbeitungsseite für Mitarbeiterteilnahmen zurück.
+
+`def participationTrainings(self)`
+
+Gibt den HTML Code der Teilnahme Weiterbildungsübersicht zurück.
+
+`def participationTraining(self)`
+
+Gibt den HTML Code der Bearbeitungsseite für Weiterbildungsteilnahmen zurück.
+
+`def reportEmployees(self)`
+
+Gibt den HTML Code der Mitarbeiterauswertung zurück.
+
+`def reportTrainings(self)`
+
+Gibt den HTML Code der Weiterbbildungsauswertung zurück.
+
+`def reportCertificates(self)`
+
+Gibt den HTML Code der Zertifikatauswertung zurück.
+
 ### training_api.py, qualification_api.py, employee_api.py und participation_api.py
 
 #### Zweck
