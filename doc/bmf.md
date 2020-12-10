@@ -154,6 +154,7 @@ Wir haben den Source Code aller Routen mittels dem [Markdown Validator](https://
 Wir haben den Source Code von allen CSS-Dateien mit dem [CSS Validator](http://jigsaw.w3.org/css-validator/validator) überprüft und sind zu folgenden Ergebnissen gekommen.
 
 | Datei | Fehler |
+| --- | --- |
 | main.css | 0 |
 | layout.css | 0 |
 | counter.css | 2 |

@@ -144,13 +144,21 @@
 </ul></li>
 <li><a href="#beschreibung-der-komponenten-des-servers">Beschreibung der Komponenten des Servers</a>
 <ul>
-<li><a href="#application.py">Application.py</a></li>
+<li><a href="#application.py">application.py</a></li>
+<li><a href="#employee_api.py">employee_api.py</a></li>
+<li><a href="#training_api.py">training_api.py</a></li>
+<li><a href="#participation_api.py">participation_api.py</a></li>
+<li><a href="#certificate_api.py">certificate_api.py</a></li>
+<li><a href="#qualification_api.py">qualification_api.py</a></li>
+<li><a href="#view.py">view.py</a></li>
+<li><a href="#database.py">database.py</a></li>
 </ul></li>
 <li><a href="#datenablage">Datenablage</a></li>
 <li><a href="#konfiguration">Konfiguration</a></li>
 <li><a href="#durchführung-und-ergebnis-der-geforderten-prüfungen">Durchführung und Ergebnis der geforderten Prüfungen</a>
 <ul>
 <li><a href="#markup-validierung">Markup Validierung</a></li>
+<li><a href="#css-validierung">CSS Validierung</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -158,13 +166,57 @@
 <h1 id="mitarbeiter-qualifizierung">Mitarbeiter Qualifizierung</h1>
 <h2 id="allgemeine-beschreibung">Allgemeine Beschreibung</h2>
 <h3 id="aufgabe-der-anwendung">Aufgabe der Anwendung</h3>
+<p>Die Anwendung “Mitarbeiter Qualifizierung” ermöglicht das Erfassen von Mitarbeitern, Weiterbildungen, Zertifikaten und Qualifizierungen. Mitarbeiter können an Weiterbildungen teilnehmen und erlangen dadurch neue Zertifikate und Qualifikationen. Desweiteren stehen Funktionen zur Auswertung zur verfügung welche eine Übersicht über alle Mitarbeiter und deren Zertifikate und Qualifikationen liefern.</p>
 <h3 id="übersicht-der-fachlichen-funktionen">Übersicht der fachlichen Funktionen</h3>
+<h4 id="startseite">Startseite</h4>
+<p>Hier wird die Anzahl der bereits erfassten Mitarbeiter, Weiterbildungen und der gesamten Teilnahmen an diesen angezeigt.</p>
+<h4 id="pflege">Pflege</h4>
+<p>Die Pflege Seiten stellen Funktionalität zur Verwaltung der Daten zur verfügung. Es können neue Mitarbeiter, Weiterbildungen, Zertifikate und Qualifikationen angelegt werden. Den Weiterbildungen können hier die Zertifikate und Qualifikationen zugeordnet werden welche die Mitarbeiter durch eine erfolgreiche Teilnahme erlangen können.</p>
+<h4 id="teilnahme">Teilnahme</h4>
+<p>Auf den Teilnahme Seiten hat der Nutzer die Möglichkeit Teilnahmen an Weiterbildungen zu verwalten. Die Sichtweise Mitarbeiter listet alle erfassten Mitarbeiter im System auf und ermöglicht über eine Detailansicht die Mitarbeiter für eine Weiterbildung einzutragen. In der Weiterbildungsansicht werden alle laufenden Weiterbildungen gelistet und über die Detailansicht kann der Status der Teilnahmen für die einzelnen Mitarbeiter angepasst werden.</p>
+<h4 id="auswertungen">Auswertungen</h4>
+<p>Die Auswertungsseiten liefern einen Überblick über aktuelle Teilnahmen inklusive Status und den bereits erlangten Zertifikaten der einzelnen Mitarbeiter.</p>
 <h2 id="beschreibung-der-komponenten-des-servers">Beschreibung der Komponenten des Servers</h2>
-<h3 id="application.py">Application.py</h3>
+<h3 id="application.py">application.py</h3>
 <h4 id="zweck">Zweck</h4>
 <h4 id="aufbau">Aufbau</h4>
 <h4 id="zusammenwirken-mit-anderen-komponenten">Zusammenwirken mit anderen Komponenten</h4>
 <h4 id="api">API</h4>
+<h3 id="employee_api.py">employee_api.py</h3>
+<h4 id="zweck-1">Zweck</h4>
+<h4 id="aufbau-1">Aufbau</h4>
+<h4 id="zusammenwirken-mit-anderen-komponenten-1">Zusammenwirken mit anderen Komponenten</h4>
+<h4 id="api-1">API</h4>
+<h3 id="training_api.py">training_api.py</h3>
+<h4 id="zweck-2">Zweck</h4>
+<h4 id="aufbau-2">Aufbau</h4>
+<h4 id="zusammenwirken-mit-anderen-komponenten-2">Zusammenwirken mit anderen Komponenten</h4>
+<h4 id="api-2">API</h4>
+<h3 id="participation_api.py">participation_api.py</h3>
+<h4 id="zweck-3">Zweck</h4>
+<h4 id="aufbau-3">Aufbau</h4>
+<h4 id="zusammenwirken-mit-anderen-komponenten-3">Zusammenwirken mit anderen Komponenten</h4>
+<h4 id="api-3">API</h4>
+<h3 id="certificate_api.py">certificate_api.py</h3>
+<h4 id="zweck-4">Zweck</h4>
+<h4 id="aufbau-4">Aufbau</h4>
+<h4 id="zusammenwirken-mit-anderen-komponenten-4">Zusammenwirken mit anderen Komponenten</h4>
+<h4 id="api-4">API</h4>
+<h3 id="qualification_api.py">qualification_api.py</h3>
+<h4 id="zweck-5">Zweck</h4>
+<h4 id="aufbau-5">Aufbau</h4>
+<h4 id="zusammenwirken-mit-anderen-komponenten-5">Zusammenwirken mit anderen Komponenten</h4>
+<h4 id="api-5">API</h4>
+<h3 id="view.py">view.py</h3>
+<h4 id="zweck-6">Zweck</h4>
+<h4 id="aufbau-6">Aufbau</h4>
+<h4 id="zusammenwirken-mit-anderen-komponenten-6">Zusammenwirken mit anderen Komponenten</h4>
+<h4 id="api-6">API</h4>
+<h3 id="database.py">database.py</h3>
+<h4 id="zweck-7">Zweck</h4>
+<h4 id="aufbau-7">Aufbau</h4>
+<h4 id="zusammenwirken-mit-anderen-komponenten-7">Zusammenwirken mit anderen Komponenten</h4>
+<h4 id="api-7">API</h4>
 <h2 id="datenablage">Datenablage</h2>
 <h2 id="konfiguration">Konfiguration</h2>
 <h2 id="durchführung-und-ergebnis-der-geforderten-prüfungen">Durchführung und Ergebnis der geforderten Prüfungen</h2>
@@ -244,5 +296,30 @@
 </tr>
 </tbody>
 </table>
+<h3 id="css-validierung">CSS Validierung</h3>
+<p>Wir haben den Source Code von allen CSS-Dateien mit dem <a href="http://jigsaw.w3.org/css-validator/validator">CSS Validator</a> überprüft und sind zu folgenden Ergebnissen gekommen.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Datei</th>
+<th>Fehler</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>main.css</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>layout.css</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>counter.css</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>Die Fehler in der counter.css Datei kommen daher zustande, dass wir sehr neue CSS Regeln nutzen, welche noch nicht in dem CSS3 Standard sind. Die Counter animation wird z.B. nur von Chrome bzw. Chromium unterstützt. Das ist aber nicht schlimm, da Browser welche die Animation nicht unterstützen immer noch alles anzeigen können. Es ist natürlich schade aber nicht das Ende, wenn nicht alle Browser die tolle Animation darstellen können.</p>
 </body>
 </html>
