@@ -1,6 +1,7 @@
 # coding: utf-8
 import cherrypy
 from .db.database import Database
+from datetime import date
 from .view import View
 
 class Application:
@@ -29,7 +30,7 @@ class Application:
                 {
                     "employees": self.employees.count(),
                     "trainings": self.trainings.count(),
-                    "participations": 5
+                    "participations": self.participations.count()
                 }
             )
 
@@ -56,7 +57,7 @@ class Application:
                   ON c.id = e.certificate_id
                 WHERE e.employee_id = ?
             ''',
-            [index]
+            [int(index)]
         )
         qualifications = self.qualifications.query(
             '''
@@ -66,22 +67,24 @@ class Application:
                   ON q.id = e.qualification_id
                 WHERE e.employee_id = ?
             ''',
-            [index]
+            [int(index)]
         )
         participations = self.participations.query(
             '''
-                SELECT *
-                FROM participation
+                SELECT t.id, t.title, t.date_from, t.date_to, t.desc, t.min_participants, t.max_participants, certificate_id, p.status
+                FROM participation p
+                JOIN training t
+                  ON t.id = p.training_id
                 WHERE employee_id = ?
             ''',
-            [index]
+            [int(index)]
         )
         return View().viewEmployee(
             {
                 "employee": self.employees.get_by_index(int(index)),
                 "certificates": self.certificates.deserialize_result(certificates),
                 "qualifications": self.qualifications.deserialize_result(qualifications),
-                "participations": self.participations.deserialize_result(participations)
+                "participations": self.trainings.deserialize_result(participations, [["status"]])
             }
         )
 
@@ -189,6 +192,8 @@ class Application:
         participations_ids = list(map(lambda m: m.training_id, participations))
         trainings_assigned = list(filter(lambda m: m.id in participations_ids, trainings))
         trainings_available = list(filter(lambda m: m.id not in participations_ids, trainings))
+        trainings_available = list(filter(
+            lambda m: date.fromisoformat(m.date_from) > date.today(), trainings_available))
         participations_dict = {}
         for p in participations:
             participations_dict[p.training_id] = p.status
@@ -205,6 +210,7 @@ class Application:
     @cherrypy.expose
     def participation_trainings(self):
         trainings = self.trainings.get_all()
+        trainings = list(filter(lambda m: date.fromisoformat(m.date_to) > date.today(), trainings))
         for training in trainings:
             training.participations = self.participations.query(
                 '''
@@ -212,7 +218,9 @@ class Application:
                     FROM training t
                     JOIN participation p
                       ON t.id = p.training_id
-                '''
+                    WHERE t.id = ?
+                ''',
+                [training["id"]]
             )[0][0]
 
         return View().participationTrainings(
@@ -220,6 +228,36 @@ class Application:
                 "trainings": trainings
             }
         )
+
+    @cherrypy.expose
+    def participation_training(self, index):
+        training = self.trainings.get_by_index(int(index))
+
+        employees = self.employees.get_all()
+        participations = self.participations.query(
+            '''
+                SELECT *
+                FROM participation
+                WHERE training_id = ?
+            ''',
+            [index]
+        )
+        participations = self.participations.deserialize_result(participations)
+        participations_ids = list(map(lambda m: m.employee_id, participations))
+        employees_assigned = list(filter(lambda m: m.id in participations_ids, employees))
+        employees_available = list(filter(lambda m: m.id not in participations_ids, employees))
+        participations_dict = {}
+        for p in participations:
+            participations_dict[p.employee_id] = p.status
+
+        return View().participationTraining(
+                {
+                    "training": training,
+                    "employees_assigned": employees_assigned,
+                    "employees_available": employees_available,
+                    "participations": participations_dict
+                }
+            )
 
     @cherrypy.expose
     def report_employees(self):

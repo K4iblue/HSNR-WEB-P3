@@ -2,9 +2,9 @@
 <%def name="head()">
 </%def>
 <%def name="title()">
-  Weiterbildung bearbeiten
+  Weiterbildung Details
 </%def>
-<h2>Weiterbildung Bearbeiten:</h2>
+<h2>Weiterbildung Details:</h2>
 <input disabled name="id" value="${training["id"]}" hidden/>
 <label for="title">Bezeichnung:</label>
 <input disabled name="title" value="${training["title"] | h}"></input disabled>

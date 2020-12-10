@@ -24,7 +24,7 @@
       <a href="#" hidden class="save"><img title="Speichern" class="icon" src="/static/icons/check.svg" /></a>
       <a href="#" hidden class="cancel"><img title="Abbrechen" class="icon" src="/static/icons/x.svg" /></a>
       <a href="#" class="delete"><img title="Löschen" class="icon" src="/static/icons/trash-2.svg" /></a>
-      <a href="#" class="display"><img title="Anzeigen" class="icon" src="/static/icons/search.svg" /></a>
+        <a href="/view-employee/${employee['id']}" class="display"><img title="Anzeigen" class="icon" src="/static/icons/search.svg" /></a>
     </div>
   </div>
 % endfor

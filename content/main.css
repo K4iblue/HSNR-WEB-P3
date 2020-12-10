@@ -12,6 +12,10 @@
   grid-template-columns: repeat(4, 1fr) 85px;
 }
 
+.list-trainings-employee {
+  grid-template-columns: repeat(5, 1fr);
+}
+
 .list-qualifications {
   grid-template-columns: repeat(2, 1fr) 85px;
 }
@@ -43,6 +47,7 @@
 
 .list-header {
   margin-bottom: 0.5em;
+  gap: 0.75em;
 }
 
 .list-row {
@@ -60,7 +65,7 @@
 }
 
 .report input {
-  width: 80px;
+  width: 85px;
 }
 
 input, textarea, select, .button {

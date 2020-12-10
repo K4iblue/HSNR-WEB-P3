@@ -47,7 +47,7 @@ def main():
     cherrypy.tree.mount(CertificateApi(certificates), '/api/certificate')
     cherrypy.tree.mount(TraingApi(trainings, granted_qualifications), '/api/training')
     cherrypy.tree.mount(QualificationApi(qualifications), '/api/qualification')
-    cherrypy.tree.mount(ParticipationApi(participations), '/api/participation')
+    cherrypy.tree.mount(ParticipationApi(participations, trainings, qualifications, owned_certificates, owned_qualifications), '/api/participation')
     cherrypy.config.update({'request.show_tracebacks': False})
     cherrypy.engine.start()
     cherrypy.engine.block()

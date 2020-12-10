@@ -5,7 +5,7 @@
 <%def name="title()">
   Qualifikationen Pflege
 </%def>
-<h2>Zertifikate:</h2>
+<h2>Qualifikationen:</h2>
 <div class="list-header list-qualifications">
   <div>Bezeichnung</div>
   <div>Beschreibung</div>
@@ -24,7 +24,7 @@
   </div>
 % endfor
 </br>
-<h2>Zertifikat hinzufügen:</h2>
+<h2>Qualifikation hinzufügen:</h2>
 <div class="list-header list-qualifications">
   <div>Bezeichnung</div>
   <div>Beschreibung</div>
