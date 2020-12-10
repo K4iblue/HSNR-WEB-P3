@@ -92,20 +92,88 @@ Bei dem delete wird eine Eintrag mit den entsprechenden index aus der Datenbank 
 
 #### Zweck
 
-#### Aufbau
+Die View Klasse rendert die Mako Templates der einzelnen Seiten dieser Anwendung.
 
 #### Zusammenwirken mit anderen Komponenten
 
+Der Hauptkontroller bezieht den HTML Code der Seiten von dieser Klasse.
+
 #### API
+
+`def __init__(self)`
+        
+Der Constructor erzeugt ein Mako TemplateLookup welches die Templates aus dem templates Verzeichnis bezieht.
+
+`def index(self, data)`
+
+Gibt den HTML Code der Startseite zurück.
+
+`def editEmployees(self, data)`
+    
+Gibt den HTML Code der Mitarbeiter Pflege zurück.
+
+`def viewEmployee(self, data)`
+        
+Gibt den HTML Code der Mitarbeiter Detailansicht zurück.
+
+`def editCertificates(self, data)`
+
+Gibt den HTML Code der Zertifikat Pflege zurück.
+
+`def editQualifications(self, data)`
+
+Gibt den HTML Code der Qualifikationen Pflege zurück.
+
+`def editTrainings(self, data)`
+
+Gibt den HTML Code der Weiterbildungen Pflege zurück.
+
+`def viewTraining(self, data)`
+
+Gibt den HTML Code der Weiterbildungs Detailansicht zurück.
+
+`def editTraining(self, data)`
+
+Gibt den HTML Code der Weiterbildungsbearbeitungsseite zurück.
+
+`def addTraining(self, data)`
+
+Gibt den HTML Code der Seite zum Hinzufügen einer Weiterbildung zurück.
+
+`def participationEmployees(self, data)`
+
+Gibt den HTML Code der Teilnahme Mitarbeiterübersicht zurück.
+
+`def participationEmployee(self, data)`
+
+Gibt den HTML Code der Bearbeitungsseite für Mitarbeiterteilnahmen zurück.
+
+`def participationTrainings(self, data)`
+
+Gibt den HTML Code der Teilnahme Weiterbildungsübersicht zurück.
+
+`def participationTraining(self, data)`
+
+Gibt den HTML Code der Bearbeitungsseite für Weiterbildungsteilnahmen zurück.
+
+`def reportEmployees(self, data)`
+
+Gibt den HTML Code der Mitarbeiterauswertung zurück.
+
+`def reportTrainings(self, data)`
+
+Gibt den HTML Code der Weiterbbildungsauswertung zurück.
+
+`def reportCertificates(self, data)`
+
+Gibt den HTML Code der Zertifikatauswertung zurück.
 
 ### database.py
 
 #### Zweck
 
 Die Klasse bietet eine Schnittstelle zur SQlite Datenbank.
-Die Datenmodels können mit per decorator aufgesetzt werden was ein automatisiertes erstellen der Tabellen erlaubt.
-
-#### Aufbau
+Die Datenmodels können per decorator aufgesetzt werden was ein automatisiertes erstellen der Tabellen erlaubt.
 
 #### Zusammenwirken mit anderen Komponenten
 
