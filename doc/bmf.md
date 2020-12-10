@@ -40,7 +40,77 @@ Die Auswertungsseiten liefern einen Überblick über aktuelle Teilnahmen inklusi
 
 ## Beschreibung der Komponenten des Servers
 
-### Application.py
+### application.py
+
+#### Zweck
+
+#### Aufbau
+
+#### Zusammenwirken mit anderen Komponenten
+
+#### API
+
+### employee_api.py
+
+#### Zweck
+
+#### Aufbau
+
+#### Zusammenwirken mit anderen Komponenten
+
+#### API
+
+### training_api.py
+
+#### Zweck
+
+#### Aufbau
+
+#### Zusammenwirken mit anderen Komponenten
+
+#### API
+
+### participation_api.py
+
+#### Zweck
+
+#### Aufbau
+
+#### Zusammenwirken mit anderen Komponenten
+
+#### API
+
+### certificate_api.py
+
+#### Zweck
+
+#### Aufbau
+
+#### Zusammenwirken mit anderen Komponenten
+
+#### API
+
+### qualification_api.py
+
+#### Zweck
+
+#### Aufbau
+
+#### Zusammenwirken mit anderen Komponenten
+
+#### API
+
+### view.py
+
+#### Zweck
+
+#### Aufbau
+
+#### Zusammenwirken mit anderen Komponenten
+
+#### API
+
+### database.py
 
 #### Zweck
 
