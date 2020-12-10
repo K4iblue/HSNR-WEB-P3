@@ -131,8 +131,118 @@
 <h1 class="title">Mitarbeiter Qualifizierung</h1>
 <p class="author">Erik Simon</p>
 <p class="author">Gordon Goldbach</p>
-<p class="date">10.12.2000</p>
+<p class="date">10.12.2020</p>
 </header>
-
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#mitarbeiter-qualifizierung">Mitarbeiter Qualifizierung</a>
+<ul>
+<li><a href="#allgemeine-beschreibung">Allgemeine Beschreibung</a>
+<ul>
+<li><a href="#aufgabe-der-anwendung">Aufgabe der Anwendung</a></li>
+<li><a href="#übersicht-der-fachlichen-funktionen">Übersicht der fachlichen Funktionen</a></li>
+</ul></li>
+<li><a href="#beschreibung-der-komponenten-des-servers">Beschreibung der Komponenten des Servers</a>
+<ul>
+<li><a href="#application.py">Application.py</a></li>
+</ul></li>
+<li><a href="#datenablage">Datenablage</a></li>
+<li><a href="#konfiguration">Konfiguration</a></li>
+<li><a href="#durchführung-und-ergebnis-der-geforderten-prüfungen">Durchführung und Ergebnis der geforderten Prüfungen</a>
+<ul>
+<li><a href="#markup-validierung">Markup Validierung</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="mitarbeiter-qualifizierung">Mitarbeiter Qualifizierung</h1>
+<h2 id="allgemeine-beschreibung">Allgemeine Beschreibung</h2>
+<h3 id="aufgabe-der-anwendung">Aufgabe der Anwendung</h3>
+<h3 id="übersicht-der-fachlichen-funktionen">Übersicht der fachlichen Funktionen</h3>
+<h2 id="beschreibung-der-komponenten-des-servers">Beschreibung der Komponenten des Servers</h2>
+<h3 id="application.py">Application.py</h3>
+<h4 id="zweck">Zweck</h4>
+<h4 id="aufbau">Aufbau</h4>
+<h4 id="zusammenwirken-mit-anderen-komponenten">Zusammenwirken mit anderen Komponenten</h4>
+<h4 id="api">API</h4>
+<h2 id="datenablage">Datenablage</h2>
+<h2 id="konfiguration">Konfiguration</h2>
+<h2 id="durchführung-und-ergebnis-der-geforderten-prüfungen">Durchführung und Ergebnis der geforderten Prüfungen</h2>
+<h3 id="markup-validierung">Markup Validierung</h3>
+<p>Wir haben den Source Code aller Routen mittels dem <a href="https://validator.w3.org/nu/">Markdown Validator</a> getestet.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Route</th>
+<th>Fehler</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>/</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>/edit-employees</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>/view-employee/MITARBEITER_NUMMER</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>/edit-trainings</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>/edit-training/TRAINING_NUMMER</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>/view-training/TRAINING_NUMMER</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>/add-training</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>/edit-certificates</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>/edit-qualifications</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>/participation-employees</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>/participation-employee/MITARBEITER_NUMMER</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>/participation-trainings</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>/participation-training/MITARBEITER_NUMMER</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>/report-employees</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>/report-trainings</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>/report-certificates</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>

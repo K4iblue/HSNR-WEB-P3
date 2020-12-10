@@ -15,10 +15,10 @@
 </div>
 % for employee in employees:
   <div data-employee-id="${employee['id']}" class="list-row list-employees">
-    <input disabled name="name" data-init-value="${employee['name'] | h}" value="${employee['name'] | h}"></input>
-    <input disabled name="surname" data-init-value="${employee['surname'] | h}" value="${employee['surname'] | h}"></input>
-    <input disabled name="degree" data-init-value="${employee['degree'] | h}" value="${employee['degree'] | h}"></input>
-    <input disabled name="occupation" data-init-value="${employee['occupation'] | h}" value="${employee['occupation'] | h}"></input>
+    <input disabled name="name" data-init-value="${employee['name'] | h}" value="${employee['name'] | h}"/>
+    <input disabled name="surname" data-init-value="${employee['surname'] | h}" value="${employee['surname'] | h}"/>
+    <input disabled name="degree" data-init-value="${employee['degree'] | h}" value="${employee['degree'] | h}"/>
+    <input disabled name="occupation" data-init-value="${employee['occupation'] | h}" value="${employee['occupation'] | h}"/>
     <div class="actions">
       <a href="#" class="edit"><img title="Bearbeiten" class="icon" src="/static/icons/edit.svg" /></a>
       <a href="#" hidden class="save"><img title="Speichern" class="icon" src="/static/icons/check.svg" /></a>
@@ -28,7 +28,7 @@
     </div>
   </div>
 % endfor
-</br>
+<br/>
 <h2>Mitarbeiter hinzufügen:</h2>
 <div class="list-header list-employees">
   <div>Name</div>
@@ -38,10 +38,10 @@
   <div></div>
 </div>
 <div class="active list-row list-employees">
-  <input name="name"></input>
-  <input name="surname"></input>
-  <input name="degree"></input>
-  <input name="occupation"></input>
+  <input name="name"/>
+  <input name="surname"/>
+  <input name="degree"/>
+  <input name="occupation"/>
   <div class="actions">
     <a href="#" class="add">Hinzufügen</a>
   </div>

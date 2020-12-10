@@ -7,17 +7,17 @@
 </%def>
 <h2>Weiterbildung Hinzufügen:</h2>
 <label>Bezeichnung:</label>
-<input name="title"></input>
+<input name="title"/>
 <label>Beschreibung:</label>
 <textarea name="desc"></textarea>
 <label>Von:</label>
-<input type="date" name="date_from"></input>
+<input type="date" name="date_from"/>
 <label>Bis:</label>
-<input type="date" name="date_to"></input>
+<input type="date" name="date_to"/>
 <label>minimale Teilnehmer:</label>
-<input type="number" name="min_participants"></input>
+<input type="number" name="min_participants"/>
 <label>maximale Teilnehmer:</label>
-<input type="number" name="max_participants"></input>
+<input type="number" name="max_participants"/>
 <label>Zertifikat:</label>
 <select name="certificate_id">
   % for certificate in certificates:

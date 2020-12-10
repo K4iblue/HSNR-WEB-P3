@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="de">
   <head>
     <title>${self.title()}</title>
     ${(hasattr(self, 'head') and self.head()) or ''}

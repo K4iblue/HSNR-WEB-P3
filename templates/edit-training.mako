@@ -7,18 +7,18 @@
 </%def>
 <h2>Weiterbildung Bearbeiten:</h2>
 <input name="id" value="${training["id"]}" hidden/>
-<label for="title">Bezeichnung:</label>
-<input name="title" value="${training["title"] | h}"></input>
-<label for="desc">Beschreibung:</label>
+<label>Bezeichnung:</label>
+<input name="title" value="${training["title"] | h}"/>
+<label>Beschreibung:</label>
 <textarea name="desc">${training["desc"]}</textarea>
-<label for="date_from">Von:</label>
-<input type="date" name="date_from" value="${training["date_from"] | h}"></input>
-<label for="date_to">Bis:</label>
-<input type="date" name="date_to" value="${training["date_to"] | h}"></input>
-<label for="min_participants">minimale Teilnehmer:</label>
-<input type="number" name="min_participants" value="${training["min_participants"] | h}"></input>
-<label for="max_participants">maximale Teilnehmer:</label>
-<input type="number" name="max_participants" value="${training["max_participants"] | h}"></input>
+<label>Von:</label>
+<input type="date" name="date_from" value="${training["date_from"] | h}"/>
+<label>Bis:</label>
+<input type="date" name="date_to" value="${training["date_to"] | h}"/>
+<label>minimale Teilnehmer:</label>
+<input type="number" name="min_participants" value="${training["min_participants"] | h}"/>
+<label>maximale Teilnehmer:</label>
+<input type="number" name="max_participants" value="${training["max_participants"] | h}"/>
 <label>Zertifikat:</label>
 <select name="certificate">
   % for certificate in certificates:
@@ -40,8 +40,8 @@
 </div>
 % for qualification in qualifications:
   <div data-qualification-id="${qualification['id']}" class="list-row list-qualifications">
-    <input disabled name="title" data-init-value="${qualification['title'] | h}" value="${qualification['title'] | h}"></input>
-    <input disabled name="desc" data-init-value="${qualification['desc'] | h}" value="${qualification['desc'] | h}"></input>
+    <input disabled name="title" data-init-value="${qualification['title'] | h}" value="${qualification['title'] | h}"/>
+    <input disabled name="desc" data-init-value="${qualification['desc'] | h}" value="${qualification['desc'] | h}"/>
     <div class="actions">
       <a href="#" class="delete"><img title="Löschen" class="icon" src="/static/icons/trash-2.svg" /></a>
     </div>

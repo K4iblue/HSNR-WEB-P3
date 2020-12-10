@@ -12,10 +12,10 @@
 </div>
 % for employee in employees:
   <div data-employee-id="${employee['id']}" class="list-row list-employees">
-    <input disabled name="name" data-init-value="${employee['name'] | h}" value="${employee['name'] | h}"></input>
-    <input disabled name="surname" data-init-value="${employee['surname'] | h}" value="${employee['surname'] | h}"></input>
-    <input disabled name="degree" data-init-value="${employee['degree'] | h}" value="${employee['degree'] | h}"></input>
-    <input disabled name="occupation" data-init-value="${employee['occupation'] | h}" value="${employee['occupation'] | h}"></input>
+    <input disabled name="name" data-init-value="${employee['name'] | h}" value="${employee['name'] | h}"/>
+    <input disabled name="surname" data-init-value="${employee['surname'] | h}" value="${employee['surname'] | h}"/>
+    <input disabled name="degree" data-init-value="${employee['degree'] | h}" value="${employee['degree'] | h}"/>
+    <input disabled name="occupation" data-init-value="${employee['occupation'] | h}" value="${employee['occupation'] | h}"/>
     <div class="actions">
       <a href="/participation-employee/${employee["id"]}" class="display"><img title="Anzeigen" class="icon" src="/static/icons/search.svg" /></a>
     </div>
