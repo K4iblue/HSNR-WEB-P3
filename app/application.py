@@ -1,5 +1,7 @@
 # coding: utf-8
 import cherrypy
+import os
+import json
 from .db.database import Database
 from datetime import date
 from .view import View
@@ -35,9 +37,14 @@ class Application:
             )
 
     @cherrypy.expose
-    def default(self):
-        raise cherrypy.HTTPError(404)
+    def default(self, *_args, **_kwargs):
+        with open('templates/layout.html', 'r') as f:
+            return f.read()
     default.expose = True
+
+    @cherrypy.expose
+    def templates(self):
+        return json.dumps(os.listdir('templates'))
 
     @cherrypy.expose
     def edit_employees(self):

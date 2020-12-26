@@ -1,10 +1,4 @@
-<%inherit file="layout.mako"/>
-<%def name="head()">
-  <script defer src="/static/add-training.js"></script>
-</%def>
-<%def name="title()">
-  Weiterbildung hinzufügen
-</%def>
+% window.setTitle("Weiterbildung hinzufügen")
 <h2>Weiterbildung Hinzufügen:</h2>
 <label>Bezeichnung:</label>
 <input name="title"/>
@@ -20,9 +14,9 @@
 <input type="number" name="max_participants"/>
 <label>Zertifikat:</label>
 <select name="certificate_id">
-  % for certificate in certificates:
-    <option value="${certificate["id"]}">${certificate["title"]}</option>
-  % endfor
+% certificates.forEach(certificate => {
+  <option value="${certificate["id"]}">${certificate["title"]}</option>
+% })
 </select>
 <br/>
 <div class="alert-box-warning">

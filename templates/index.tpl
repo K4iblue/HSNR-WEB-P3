@@ -1,10 +1,4 @@
-<%inherit file="layout.mako"/>
-<%def name="head()">
-  <script defer src="/static/index.js"></script>
-</%def>
-<%def name="title()">
-  Startseite
-</%def>
+% window.setTitle("Startseite")
 <h2>Mitarbeiter - Statistiken</h2>
 <div class="counter-box">
   <span class="counter" data-goal="${employees}"></span>

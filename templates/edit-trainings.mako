@@ -1,10 +1,4 @@
-<%inherit file="layout.mako"/>
-<%def name="head()">
-  <script defer src="/static/edit-trainings.js"></script>
-</%def>
-<%def name="title()">
-  Weiterbildungs Pflege
-</%def>
+% window.setTitle("Weiterbildungs Pflege")
 <h2>Weiterbildungen:</h2>
 <div class="list-header list-trainings">
   <div>Bezeichnung</div>
@@ -15,20 +9,20 @@
   <div>max. Teilnehmer</div>
   <div>Aktionen</div>
 </div>
-% for training in trainings:
+% trainings.forEach(training => {
   <div data-training-id="${training['id']}" class="list-row list-trainings">
-    <input disabled name="title" value="${training['title'] | h}"/>
-    <input disabled name="desc" value="${training['desc'].replace("\n", " ") | h}"/>
-    <input disabled name="data_from" type="date" value="${training['date_from'] | h}"/>
-    <input disabled name="date_to" type="date" value="${training['date_to'] | h}"/>
-    <input disabled name="min_participants" value="${training['min_participants'] | h}"/>
-    <input disabled name="max_participants" value="${training['max_participants'] | h}"/>
+    <input disabled name="title" value="${training['title']}"/>
+    <input disabled name="desc" value="${training['desc'].replace("\n", " ")}"/>
+    <input disabled name="data_from" type="date" value="${training['date_from']}"/>
+    <input disabled name="date_to" type="date" value="${training['date_to']}"/>
+    <input disabled name="min_participants" value="${training['min_participants']}"/>
+    <input disabled name="max_participants" value="${training['max_participants']}"/>
     <div class="actions">
       <a href="/edit-training?index=${training['id']}" class="edit"><img title="Bearbeiten" class="icon" src="/static/icons/edit.svg" /></a>
       <a href="#" class="delete"><img title="Löschen" class="icon" src="/static/icons/trash-2.svg" /></a>
       <a href="/view-training/${training["id"]}" class="display"><img title="Anzeigen" class="icon" src="/static/icons/search.svg" /></a>
     </div>
   </div>
-% endfor
+% })
 <br/>
 <a href="/add-training" class="add button">Neue Weiterbildung hinzufügen</a>

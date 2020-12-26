@@ -1,29 +1,23 @@
-<%inherit file="layout.mako"/>
-<%def name="head()">
-  <script defer src="/static/edit-training.js"></script>
-</%def>
-<%def name="title()">
-  Weiterbildung bearbeiten
-</%def>
+% window.setTitle("Weiterbildung bearbeiten")
 <h2>Weiterbildung Bearbeiten:</h2>
 <input name="id" value="${training["id"]}" hidden/>
 <label>Bezeichnung:</label>
-<input name="title" value="${training["title"] | h}"/>
+<input name="title" value="${training["title"]}"/>
 <label>Beschreibung:</label>
 <textarea name="desc">${training["desc"]}</textarea>
 <label>Von:</label>
-<input type="date" name="date_from" value="${training["date_from"] | h}"/>
+<input type="date" name="date_from" value="${training["date_from"]}"/>
 <label>Bis:</label>
-<input type="date" name="date_to" value="${training["date_to"] | h}"/>
+<input type="date" name="date_to" value="${training["date_to"]}"/>
 <label>minimale Teilnehmer:</label>
-<input type="number" name="min_participants" value="${training["min_participants"] | h}"/>
+<input type="number" name="min_participants" value="${training["min_participants"]}"/>
 <label>maximale Teilnehmer:</label>
-<input type="number" name="max_participants" value="${training["max_participants"] | h}"/>
+<input type="number" name="max_participants" value="${training["max_participants"]}"/>
 <label>Zertifikat:</label>
 <select name="certificate">
-  % for certificate in certificates:
-    <option value="${certificate["id"]}" ${certificate["id"] == training["certificate_id"] and "selected" or ""}>${certificate["title"]}</option>
-  % endfor
+% certificates.forEach(certificate => {
+    <option value="${certificate["id"]}" ${certificate["id"] == training["certificate_id"] && "selected" || ""}>${certificate["title"]}</option>
+% })
 </select>
 <br/>
 <br/>
@@ -38,21 +32,21 @@
   <div>Beschreibung</div>
   <div>Aktionen</div>
 </div>
-% for qualification in qualifications:
+% qualifications.forEach(qualification => {
   <div data-qualification-id="${qualification['id']}" class="list-row list-qualifications">
-    <input disabled name="title" data-init-value="${qualification['title'] | h}" value="${qualification['title'] | h}"/>
-    <input disabled name="desc" data-init-value="${qualification['desc'] | h}" value="${qualification['desc'] | h}"/>
+    <input disabled name="title" data-init-value="${qualification['title']}" value="${qualification['title']}"/>
+    <input disabled name="desc" data-init-value="${qualification['desc']}" value="${qualification['desc']}"/>
     <div class="actions">
       <a href="#" class="delete"><img title="Löschen" class="icon" src="/static/icons/trash-2.svg" /></a>
     </div>
   </div>
-% endfor
+% })
 
   <h3>Qualifikation hinzufügen</h3>
   <select name="qualification">
-  % for qualification in all_qualifications:
+% allQualifications.forEach(qualification => {
     <option value="${qualification["id"]}">${qualification["title"]}</option>
-  % endfor
+% })
   </select>
   <a href="#" class="add">Hinzufügen</a>
 <br/>

@@ -49,6 +49,7 @@ def main():
     cherrypy.tree.mount(QualificationApi(qualifications), '/api/qualification')
     cherrypy.tree.mount(ParticipationApi(participations, trainings, qualifications, owned_certificates, owned_qualifications), '/api/participation')
     cherrypy.config.update({'request.show_tracebacks': False})
+    cherrypy.config.update({'error_page.404': os.path.join(current_dir, 'templates/layout.html')})
     cherrypy.engine.start()
     cherrypy.engine.block()
 if __name__ == '__main__':
