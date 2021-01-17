@@ -44,7 +44,7 @@
 
   <h3>Qualifikation hinzufügen</h3>
   <select name="qualification">
-% allQualifications.forEach(qualification => {
+% all_qualifications.forEach(qualification => {
     <option value="${qualification["id"]}">${qualification["title"]}</option>
 % })
   </select>
@@ -52,5 +52,5 @@
 <br/>
 <br/>
 <div class="flex-buttons">
-  <a href="/edit-trainings" class="back button">Zurück</a>
+  <a href="/participation-employees" class="back button">Zurück</a>
 </div>

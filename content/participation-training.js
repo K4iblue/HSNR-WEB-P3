@@ -8,7 +8,7 @@ document.querySelectorAll(".add").forEach((e) =>
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ employee_id, training_id, status: 1 }),
-    }).then(() => window.location.reload());
+    }).then(() => window.reload());
   })
 );
 document.querySelectorAll("select").forEach((e) =>
@@ -22,6 +22,6 @@ document.querySelectorAll("select").forEach((e) =>
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ employee_id, training_id, status }),
-    }).then(() => window.location.reload());
+    }).then(() => window.reload());
   })
 );

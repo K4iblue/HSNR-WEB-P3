@@ -92,7 +92,7 @@ document.querySelectorAll(".actions .add").forEach((e) =>
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(certificate),
       });
-      window.location.reload();
+      window.reload();
     } else {
       alert("Sie bearbeitet gerade noch einen Eintrag!");
     }

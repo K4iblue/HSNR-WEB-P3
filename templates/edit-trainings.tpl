@@ -18,9 +18,9 @@
     <input disabled name="min_participants" value="${training['min_participants']}"/>
     <input disabled name="max_participants" value="${training['max_participants']}"/>
     <div class="actions">
-      <a href="/edit-training?index=${training['id']}" class="edit"><img title="Bearbeiten" class="icon" src="/static/icons/edit.svg" /></a>
+      <a href="/edit-training/${training['id']}" class="edit"><img title="Bearbeiten" class="icon" src="/static/icons/edit.svg" /></a>
       <a href="#" class="delete"><img title="Löschen" class="icon" src="/static/icons/trash-2.svg" /></a>
-      <a href="/view-training/${training["id"]}" class="display"><img title="Anzeigen" class="icon" src="/static/icons/search.svg" /></a>
+      <a href="/view-training/${training['id']}" class="display"><img title="Anzeigen" class="icon" src="/static/icons/search.svg" /></a>
     </div>
   </div>
 % })

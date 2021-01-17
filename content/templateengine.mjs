@@ -1,3 +1,7 @@
+function firstChar(string) {
+  return string.replace(/\s*/, '')[0];
+}
+
 class TemplateRenderer {
   /**
    * @param {string} template
@@ -7,10 +11,10 @@ class TemplateRenderer {
     const lines = template.split("\n");
     let compiled =
       "Object.keys(templateContext).forEach(key => eval(`${key} = templateContext.${key}`));\n";
-    compiled += 'let templateContent = "";';
+    compiled += 'let templateContent = "";\n';
     lines.forEach((line) => {
-      if (line[0] == "%") {
-        compiled += line.substr(1) + "\n";
+      if (firstChar(line) == "%") {
+        compiled += line.replace(/\s*%\s*/, '') + "\n";
       } else {
         compiled += "templateContent += `" + line + "\\n`\n";
       }

@@ -26,6 +26,6 @@ document.querySelectorAll(".add").forEach((e) =>
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(training),
-    }).then((r) => window.location.reload());
+    }).then((r) => window.reload());
   })
 );

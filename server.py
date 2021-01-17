@@ -13,6 +13,7 @@ import sys
 import os
 import cherrypy
 from app.application import Application
+from app.api import Api
 from app.employee_api import EmployeeApi
 from app.certificate_api import CertificateApi
 from app.qualification_api import QualificationApi
@@ -40,16 +41,22 @@ def main():
             'tools.staticdir.on': True,
             'tools.staticdir.dir': './content',
             'tools.gzip.on': True
+        },
+        '/templates': {
+            'tools.staticdir.root': current_dir,
+            'tools.staticdir.on': True,
+            'tools.staticdir.dir': './templates',
+            'tools.gzip.on': True
         }
     }
-    cherrypy.tree.mount(Application(employees, trainings, certificates, qualifications, granted_qualifications, owned_certificates, owned_qualifications, participations), '/', static_config)
+    cherrypy.tree.mount(Application(), '/', static_config)
+    cherrypy.tree.mount(Api(employees, trainings, certificates, qualifications, granted_qualifications, owned_certificates, owned_qualifications, participations), '/api', static_config)
     cherrypy.tree.mount(EmployeeApi(employees, owned_certificates, owned_qualifications), '/api/employee')
     cherrypy.tree.mount(CertificateApi(certificates), '/api/certificate')
     cherrypy.tree.mount(TraingApi(trainings, granted_qualifications), '/api/training')
     cherrypy.tree.mount(QualificationApi(qualifications), '/api/qualification')
     cherrypy.tree.mount(ParticipationApi(participations, trainings, qualifications, owned_certificates, owned_qualifications), '/api/participation')
     cherrypy.config.update({'request.show_tracebacks': False})
-    cherrypy.config.update({'error_page.404': os.path.join(current_dir, 'templates/layout.html')})
     cherrypy.engine.start()
     cherrypy.engine.block()
 if __name__ == '__main__':

@@ -31,6 +31,7 @@
   <div>Beschäftigung</div>
   <div></div>
 </div>
+<div/>
 <div class="active list-row list-employees">
   <input name="name"/>
   <input name="surname"/>

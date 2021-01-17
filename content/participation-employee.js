@@ -23,7 +23,7 @@ document.querySelectorAll(".cancel").forEach((e) =>
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ employee_id, training_id, status: 3 }),
-      }).then(() => window.location.reload());
+      }).then(() => window.reload());
     }
   })
 );
