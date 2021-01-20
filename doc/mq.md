@@ -3,7 +3,7 @@ title: Mitarbeiter Qualifizierung
 author:
 - Erik Simon
 - Gordon Goldbach
-date: 10.12.2020
+date: 20.01.21
 ---
 
 # Mitarbeiter Qualifizierung
