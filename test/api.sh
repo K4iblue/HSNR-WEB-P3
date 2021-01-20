@@ -1,6 +1,6 @@
 curl --fail 127.0.0.1:8080/api/dashboard
 curl --fail 127.0.0.1:8080/api/edit_employees
-curl --fail 127.0.0.1:8080/api/view_employees
+curl --fail 127.0.0.1:8080/api/view_employee/1
 curl --fail 127.0.0.1:8080/api/add_training
 curl --fail 127.0.0.1:8080/api/edit_trainings
 curl --fail 127.0.0.1:8080/api/edit_training
