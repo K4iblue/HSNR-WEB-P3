@@ -45,12 +45,10 @@ class Router {
 
   handleLink(e) {
     let src = e.srcElement;
-    while(src.tagName != "A")
-      src = src.parentElement
+    while (src.tagName != "A") src = src.parentElement;
     e.preventDefault();
     const href = src.getAttribute("href");
-    if(!href || href[0] == "#")
-      return;
+    if (!href || href[0] == "#") return;
     window["router"].request(href);
   }
 
@@ -70,9 +68,7 @@ class Router {
         '<div class="alert-box-warning">Error 404 Route konnte nicht gefunden werden!</div>';
       throw new Error("Route " + url + " not found!");
     }
-    const context = await (
-      await fetch("http://127.0.0.1:8080" + route.context + urlSuffix)
-    ).json();
+    const context = await (await fetch(route.context + urlSuffix)).json();
     const template = await this.templateCache.get(route.template);
     contentContainer.innerHTML = this.templateEngine.renderTemplate(
       context,
