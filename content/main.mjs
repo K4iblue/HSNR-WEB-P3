@@ -50,6 +50,7 @@ const routes = {
   "/add-training": {
     template: "add-training.tpl",
     context: "/api/add-training",
+    script: "/static/add-training.js"
   },
   "/view-training": {
     template: "view-training.tpl",

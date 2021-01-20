@@ -131,7 +131,7 @@
 <h1 class="title">Mitarbeiter Qualifizierung</h1>
 <p class="author">Erik Simon</p>
 <p class="author">Gordon Goldbach</p>
-<p class="date">10.12.2020</p>
+<p class="date">20.01.21</p>
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
@@ -145,8 +145,8 @@
 <li><a href="#beschreibung-der-komponenten-des-servers">Beschreibung der Komponenten des Servers</a>
 <ul>
 <li><a href="#application.py">application.py</a></li>
+<li><a href="#api.py">api.py</a></li>
 <li><a href="#training_api.py-qualification_api.py-employee_api.py-und-participation_api.py">training_api.py, qualification_api.py, employee_api.py und participation_api.py</a></li>
-<li><a href="#view.py">view.py</a></li>
 <li><a href="#database.py">database.py</a></li>
 </ul></li>
 <li><a href="#datenablage">Datenablage</a></li>
@@ -175,63 +175,58 @@
 <h2 id="beschreibung-der-komponenten-des-servers">Beschreibung der Komponenten des Servers</h2>
 <h3 id="application.py">application.py</h3>
 <h4 id="zweck">Zweck</h4>
-<p>Der Application Controller sendet die gerenderten Templates, welche über den Browser direkt abgefragt werden. Der Controller holt sich die Daten aus der Datenbank und befüllt die Templates mit diesen.</p>
-<h4 id="aufbau">Aufbau</h4>
-<p>Der Application Controller hat benötigt Zugriff auf alle Datenbank Instanzen für alle Models.</p>
+<p>Der Application Controller liefert das HTML der Seite.</p>
 <h4 id="zusammenwirken-mit-anderen-komponenten">Zusammenwirken mit anderen Komponenten</h4>
 <p>Der Application Controller wird nicht von anderen Komponenten aufgerufen und liefert direkt dem Browser das HTML.</p>
 <h4 id="api">API</h4>
-<pre><code>def __init__(
-  self, 
-  employees: Database,
-  trainings: Database, 
-  certificates: Database, 
-  qualifications: Database, 
-  granted_qualifications: Database,
-  owned_certificates: Database, 
-  owned_qualifications: Database,
-  participations: Database):</code></pre>
-<p>Der Constructor benötigt alle Datenbanken.</p>
-<p><code>def index(self)</code></p>
-<p>Gibt den HTML Code der Startseite zurück.</p>
-<p><code>def editEmployees(self)</code></p>
-<p>Gibt den HTML Code der Mitarbeiter Pflege zurück.</p>
-<p><code>def viewEmployee(self)</code></p>
-<p>Gibt den HTML Code der Mitarbeiter Detailansicht zurück.</p>
-<p><code>def editCertificates(self)</code></p>
-<p>Gibt den HTML Code der Zertifikat Pflege zurück.</p>
-<p><code>def editQualifications(self)</code></p>
-<p>Gibt den HTML Code der Qualifikationen Pflege zurück.</p>
-<p><code>def editTrainings(self)</code></p>
-<p>Gibt den HTML Code der Weiterbildungen Pflege zurück.</p>
-<p><code>def viewTraining(self)</code></p>
-<p>Gibt den HTML Code der Weiterbildungs Detailansicht zurück.</p>
-<p><code>def editTraining(self)</code></p>
-<p>Gibt den HTML Code der Weiterbildungsbearbeitungsseite zurück.</p>
-<p><code>def addTraining(self)</code></p>
-<p>Gibt den HTML Code der Seite zum Hinzufügen einer Weiterbildung zurück.</p>
-<p><code>def participationEmployees(self)</code></p>
-<p>Gibt den HTML Code der Teilnahme Mitarbeiterübersicht zurück.</p>
-<p><code>def participationEmployee(self)</code></p>
-<p>Gibt den HTML Code der Bearbeitungsseite für Mitarbeiterteilnahmen zurück.</p>
-<p><code>def participationTrainings(self)</code></p>
-<p>Gibt den HTML Code der Teilnahme Weiterbildungsübersicht zurück.</p>
-<p><code>def participationTraining(self)</code></p>
-<p>Gibt den HTML Code der Bearbeitungsseite für Weiterbildungsteilnahmen zurück.</p>
-<p><code>def reportEmployees(self)</code></p>
-<p>Gibt den HTML Code der Mitarbeiterauswertung zurück.</p>
-<p><code>def reportTrainings(self)</code></p>
-<p>Gibt den HTML Code der Weiterbbildungsauswertung zurück.</p>
-<p><code>def reportCertificates(self)</code></p>
-<p>Gibt den HTML Code der Zertifikatauswertung zurück.</p>
-<h3 id="training_api.py-qualification_api.py-employee_api.py-und-participation_api.py">training_api.py, qualification_api.py, employee_api.py und participation_api.py</h3>
+<p><code>def default(self, *_args, **_kwargs)</code></p>
+<p>Liefert den HTML Code der Seite egal welche Route aufgerufen wurde.</p>
+<h3 id="api.py">api.py</h3>
 <h4 id="zweck-1">Zweck</h4>
-<p>Die APIs ermöglichen es die Tabellen des jeweiligen Models (z.B. Employee oder Training) zu manipulieren. Dies wir benötigt um bequem über JavaScript Änderungen vornehmen zu können.</p>
-<h4 id="aufbau-1">Aufbau</h4>
-<p>Die API benötigen nur das Jeweilige Database Objekt des Models welches die API repräsentieren soll.</p>
+<p>Liefert die Viewmodels der Templates.</p>
 <h4 id="zusammenwirken-mit-anderen-komponenten-1">Zusammenwirken mit anderen Komponenten</h4>
-<p>Die APIs exposen eigene API Schnittstellen, welche von dem Frontend aufgerufen werden. Somit sind sie von anderen Server Komponenten unabhängig.</p>
+<p>Wird Clientseitig vom Router aufgerufen.</p>
 <h4 id="api-1">API</h4>
+<p><code>def dashboard(self, *_args, **_kwargs)</code></p>
+<p>Gibt das Viewmodel der Startseite zurück.</p>
+<p><code>def editEmployees(self)</code></p>
+<p>Gibt das Viewmodel der Mitarbeiter Pflege zurück.</p>
+<p><code>def viewEmployee(self)</code></p>
+<p>Gibt das Viewmodel der Mitarbeiter Detailansicht zurück.</p>
+<p><code>def editCertificates(self)</code></p>
+<p>Gibt das Viewmodel der Zertifikat Pflege zurück.</p>
+<p><code>def editQualifications(self)</code></p>
+<p>Gibt das Viewmodel der Qualifikationen Pflege zurück.</p>
+<p><code>def editTrainings(self)</code></p>
+<p>Gibt das Viewmodel der Weiterbildungen Pflege zurück.</p>
+<p><code>def viewTraining(self)</code></p>
+<p>Gibt das Viewmodel der Weiterbildungs Detailansicht zurück.</p>
+<p><code>def editTraining(self)</code></p>
+<p>Gibt das Viewmodel der Weiterbildungsbearbeitungsseite zurück.</p>
+<p><code>def addTraining(self)</code></p>
+<p>Gibt das Viewmodel der Seite zum Hinzufügen einer Weiterbildung zurück.</p>
+<p><code>def participationEmployees(self)</code></p>
+<p>Gibt das Viewmodel der Teilnahme Mitarbeiterübersicht zurück.</p>
+<p><code>def participationEmployee(self)</code></p>
+<p>Gibt das Viewmodel der Bearbeitungsseite für Mitarbeiterteilnahmen zurück.</p>
+<p><code>def participationTrainings(self)</code></p>
+<p>Gibt das Viewmodel der Teilnahme Weiterbildungsübersicht zurück.</p>
+<p><code>def participationTraining(self)</code></p>
+<p>Gibt das Viewmodel der Bearbeitungsseite für Weiterbildungsteilnahmen zurück.</p>
+<p><code>def reportEmployees(self)</code></p>
+<p>Gibt das Viewmodel der Mitarbeiterauswertung zurück.</p>
+<p><code>def reportTrainings(self)</code></p>
+<p>Gibt das Viewmodel der Weiterbbildungsauswertung zurück.</p>
+<p><code>def reportCertificates(self)</code></p>
+<p>Gibt das Viewmodel der Zertifikatauswertung zurück.</p>
+<h3 id="training_api.py-qualification_api.py-employee_api.py-und-participation_api.py">training_api.py, qualification_api.py, employee_api.py und participation_api.py</h3>
+<h4 id="zweck-2">Zweck</h4>
+<p>Die APIs ermöglichen es die Tabellen des jeweiligen Models (z.B. Employee oder Training) zu manipulieren. Dies wir benötigt um bequem über JavaScript Änderungen vornehmen zu können.</p>
+<h4 id="aufbau">Aufbau</h4>
+<p>Die API benötigen nur das Jeweilige Database Objekt des Models welches die API repräsentieren soll.</p>
+<h4 id="zusammenwirken-mit-anderen-komponenten-2">Zusammenwirken mit anderen Komponenten</h4>
+<p>Die APIs exposen eigene API Schnittstellen, welche von dem Frontend aufgerufen werden. Somit sind sie von anderen Server Komponenten unabhängig.</p>
+<h4 id="api-2">API</h4>
 <p><code>def __init__(self, database)</code></p>
 <p>Bei dem initialisieren der APIs wird ein Database object benötigt, welches das Model abbildet.</p>
 <p><code>def update(self)</code></p>
@@ -240,46 +235,6 @@
 <p>Bei dem insert wird über den PostBody als JSON ein Objekt mitgeliefert, welches in der Datenbank eingepflegt werden soll.</p>
 <p><code>def delete(self, index)</code></p>
 <p>Bei dem delete wird eine Eintrag mit den entsprechenden index aus der Datenbank gelöscht.</p>
-<h3 id="view.py">view.py</h3>
-<h4 id="zweck-2">Zweck</h4>
-<p>Die View Klasse rendert die Mako Templates der einzelnen Seiten dieser Anwendung.</p>
-<h4 id="zusammenwirken-mit-anderen-komponenten-2">Zusammenwirken mit anderen Komponenten</h4>
-<p>Der Hauptkontroller bezieht den HTML Code der Seiten von dieser Klasse.</p>
-<h4 id="api-2">API</h4>
-<p><code>def __init__(self)</code></p>
-<p>Der Constructor erzeugt ein Mako TemplateLookup welches die Templates aus dem templates Verzeichnis bezieht.</p>
-<p><code>def index(self, data)</code></p>
-<p>Gibt den HTML Code der Startseite zurück.</p>
-<p><code>def editEmployees(self, data)</code></p>
-<p>Gibt den HTML Code der Mitarbeiter Pflege zurück.</p>
-<p><code>def viewEmployee(self, data)</code></p>
-<p>Gibt den HTML Code der Mitarbeiter Detailansicht zurück.</p>
-<p><code>def editCertificates(self, data)</code></p>
-<p>Gibt den HTML Code der Zertifikat Pflege zurück.</p>
-<p><code>def editQualifications(self, data)</code></p>
-<p>Gibt den HTML Code der Qualifikationen Pflege zurück.</p>
-<p><code>def editTrainings(self, data)</code></p>
-<p>Gibt den HTML Code der Weiterbildungen Pflege zurück.</p>
-<p><code>def viewTraining(self, data)</code></p>
-<p>Gibt den HTML Code der Weiterbildungs Detailansicht zurück.</p>
-<p><code>def editTraining(self, data)</code></p>
-<p>Gibt den HTML Code der Weiterbildungsbearbeitungsseite zurück.</p>
-<p><code>def addTraining(self, data)</code></p>
-<p>Gibt den HTML Code der Seite zum Hinzufügen einer Weiterbildung zurück.</p>
-<p><code>def participationEmployees(self, data)</code></p>
-<p>Gibt den HTML Code der Teilnahme Mitarbeiterübersicht zurück.</p>
-<p><code>def participationEmployee(self, data)</code></p>
-<p>Gibt den HTML Code der Bearbeitungsseite für Mitarbeiterteilnahmen zurück.</p>
-<p><code>def participationTrainings(self, data)</code></p>
-<p>Gibt den HTML Code der Teilnahme Weiterbildungsübersicht zurück.</p>
-<p><code>def participationTraining(self, data)</code></p>
-<p>Gibt den HTML Code der Bearbeitungsseite für Weiterbildungsteilnahmen zurück.</p>
-<p><code>def reportEmployees(self, data)</code></p>
-<p>Gibt den HTML Code der Mitarbeiterauswertung zurück.</p>
-<p><code>def reportTrainings(self, data)</code></p>
-<p>Gibt den HTML Code der Weiterbbildungsauswertung zurück.</p>
-<p><code>def reportCertificates(self, data)</code></p>
-<p>Gibt den HTML Code der Zertifikatauswertung zurück.</p>
 <h3 id="database.py">database.py</h3>
 <h4 id="zweck-3">Zweck</h4>
 <p>Die Klasse bietet eine Schnittstelle zur SQlite Datenbank. Die Datenmodels können per decorator aufgesetzt werden was ein automatisiertes erstellen der Tabellen erlaubt.</p>
@@ -322,81 +277,9 @@
 <p>Für die Konfiguration haben wir uns an der Vorlage aus dem ersten Praktikum orientiert und dieser erweitert. Wir haben ein static mapping für das <code>content</code> Verzeichnis, dass dieses über <code>/static/...</code> erreicht werden kann. Wir haben das static mapping nicht wie in der Vorlage der ersten Praktikums auf den root gemappt um somit besser erkennen zu können, welche Inhalte statisch sind und welche nicht. Außerdem haben wir für den statischen Inhalt <code>gzip</code> aktiviert, da wir fanden, dass es ein cooles Feature ist. Wir haben die Application Klasse auf den root gemountet, darüber werden auch alle views erreicht. Außerdem haben wir verschiedene APIs für z.B. Mitarbeiter und Qualifikationen an jeweils <code>/api/MODEL</code> gemountet also z.B. <code>/api/employee/</code>.</p>
 <h2 id="durchführung-und-ergebnis-der-geforderten-prüfungen">Durchführung und Ergebnis der geforderten Prüfungen</h2>
 <h3 id="markup-validierung">Markup Validierung</h3>
-<p>Wir haben den Source Code aller Routen mittels dem <a href="https://validator.w3.org/nu/">Markdown Validator</a> getestet.</p>
-<table>
-<thead>
-<tr class="header">
-<th>Route</th>
-<th>Fehler</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>/</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>/edit-employees</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td>/view-employee/MITARBEITER_NUMMER</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>/edit-trainings</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td>/edit-training/TRAINING_NUMMER</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>/view-training/TRAINING_NUMMER</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td>/add-training</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>/edit-certificates</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td>/edit-qualifications</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>/participation-employees</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td>/participation-employee/MITARBEITER_NUMMER</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>/participation-trainings</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td>/participation-training/MITARBEITER_NUMMER</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>/report-employees</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td>/report-trainings</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td>/report-certificates</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
+<figure>
+<img src="./htmlreport.png" alt="report" /><figcaption aria-hidden="true">report</figcaption>
+</figure>
 <h3 id="css-validierung">CSS Validierung</h3>
 <p>Wir haben den Source Code von allen CSS-Dateien mit dem <a href="http://jigsaw.w3.org/css-validator/validator">CSS Validator</a> überprüft und sind zu folgenden Ergebnissen gekommen.</p>
 <table>
