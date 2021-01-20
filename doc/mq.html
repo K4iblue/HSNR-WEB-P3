@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Erik Simon" />
+  <meta name="author" content="Gordon Goldbach" />
+  <title>Mitarbeiter Qualifizierung</title>
+  <style>
+    html {
+      line-height: 1.7;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 40em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin-top: 1.7em;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.7em;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1.7em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1.7em 0 1.7em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      font-style: italic;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      background-color: #f0f0f0;
+      font-size: 85%;
+      margin: 0;
+      padding: .2em .4em;
+    }
+    pre {
+      line-height: 1.5em;
+      padding: 1em;
+      background-color: #f0f0f0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin-top: 1.7em;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+    }
+    th, td {
+      border-bottom: 1px solid lightgray;
+      padding: 1em 3em 1em 0;
+    }
+    header {
+      margin-bottom: 6em;
+      text-align: center;
+    }
+    nav a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Mitarbeiter Qualifizierung</h1>
+<p class="author">Erik Simon</p>
+<p class="author">Gordon Goldbach</p>
+<p class="date">20.01.21</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#mitarbeiter-qualifizierung">Mitarbeiter Qualifizierung</a>
+<ul>
+<li><a href="#allgemeine-beschreibung">Allgemeine Beschreibung</a>
+<ul>
+<li><a href="#aufgabe-der-anwendung">Aufgabe der Anwendung</a></li>
+<li><a href="#übersicht-der-fachlichen-funktionen">Übersicht der fachlichen Funktionen</a></li>
+</ul></li>
+<li><a href="#beschreibung-der-komponenten-des-servers">Beschreibung der Komponenten des Servers</a>
+<ul>
+<li><a href="#application.py">application.py</a></li>
+<li><a href="#api.py">api.py</a></li>
+<li><a href="#training_api.py-qualification_api.py-employee_api.py-und-participation_api.py">training_api.py, qualification_api.py, employee_api.py und participation_api.py</a></li>
+<li><a href="#database.py">database.py</a></li>
+</ul></li>
+<li><a href="#datenablage">Datenablage</a></li>
+<li><a href="#konfiguration">Konfiguration</a></li>
+<li><a href="#durchführung-und-ergebnis-der-geforderten-prüfungen">Durchführung und Ergebnis der geforderten Prüfungen</a>
+<ul>
+<li><a href="#markup-validierung">Markup Validierung</a></li>
+<li><a href="#css-validierung">CSS Validierung</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="mitarbeiter-qualifizierung">Mitarbeiter Qualifizierung</h1>
+<h2 id="allgemeine-beschreibung">Allgemeine Beschreibung</h2>
+<h3 id="aufgabe-der-anwendung">Aufgabe der Anwendung</h3>
+<p>Die Anwendung “Mitarbeiter Qualifizierung” ermöglicht das Erfassen von Mitarbeitern, Weiterbildungen, Zertifikaten und Qualifizierungen. Mitarbeiter können an Weiterbildungen teilnehmen und erlangen dadurch neue Zertifikate und Qualifikationen. Des weiteren stehen Funktionen zur Auswertung zur Verfügung welche eine Übersicht über alle Mitarbeiter und deren Zertifikate und Qualifikationen liefern.</p>
+<h3 id="übersicht-der-fachlichen-funktionen">Übersicht der fachlichen Funktionen</h3>
+<h4 id="startseite">Startseite</h4>
+<p>Hier wird die Anzahl der bereits erfassten Mitarbeiter, Weiterbildungen und der gesamten Teilnahmen an diesen angezeigt.</p>
+<h4 id="pflege">Pflege</h4>
+<p>Die Pflege Seiten stellen Funktionalität zur Verwaltung der Daten zur Verfügung. Es können neue Mitarbeiter, Weiterbildungen, Zertifikate und Qualifikationen angelegt werden. Den Weiterbildungen können hier die Zertifikate und Qualifikationen zugeordnet werden welche die Mitarbeiter durch eine erfolgreiche Teilnahme erlangen können.</p>
+<h4 id="teilnahme">Teilnahme</h4>
+<p>Auf den Teilnahme Seiten hat der Nutzer die Möglichkeit Teilnahmen an Weiterbildungen zu verwalten. Die Sichtweise Mitarbeiter listet alle erfassten Mitarbeiter im System auf und ermöglicht über eine Detailansicht die Mitarbeiter für eine Weiterbildung einzutragen. In der Weiterbildungsansicht werden alle laufenden Weiterbildungen gelistet und über die Detailansicht kann der Status der Teilnahmen für die einzelnen Mitarbeiter angepasst werden.</p>
+<h4 id="auswertungen">Auswertungen</h4>
+<p>Die Auswertungsseiten liefern einen Überblick über aktuelle Teilnahmen inklusive Status und den bereits erlangten Zertifikaten der einzelnen Mitarbeiter.</p>
+<h2 id="beschreibung-der-komponenten-des-servers">Beschreibung der Komponenten des Servers</h2>
+<h3 id="application.py">application.py</h3>
+<h4 id="zweck">Zweck</h4>
+<p>Der Application Controller liefert das HTML der Seite.</p>
+<h4 id="zusammenwirken-mit-anderen-komponenten">Zusammenwirken mit anderen Komponenten</h4>
+<p>Der Application Controller wird nicht von anderen Komponenten aufgerufen und liefert direkt dem Browser das HTML.</p>
+<h4 id="api">API</h4>
+<p><code>def default(self, *_args, **_kwargs)</code></p>
+<p>Liefert den HTML Code der Seite egal welche Route aufgerufen wurde.</p>
+<h3 id="api.py">api.py</h3>
+<h4 id="zweck-1">Zweck</h4>
+<p>Liefert die Viewmodels der Templates.</p>
+<h4 id="zusammenwirken-mit-anderen-komponenten-1">Zusammenwirken mit anderen Komponenten</h4>
+<p>Wird Clientseitig vom Router aufgerufen.</p>
+<h4 id="api-1">API</h4>
+<p><code>def dashboard(self, *_args, **_kwargs)</code></p>
+<p>Gibt das Viewmodel der Startseite zurück.</p>
+<p><code>def editEmployees(self)</code></p>
+<p>Gibt das Viewmodel der Mitarbeiter Pflege zurück.</p>
+<p><code>def viewEmployee(self)</code></p>
+<p>Gibt das Viewmodel der Mitarbeiter Detailansicht zurück.</p>
+<p><code>def editCertificates(self)</code></p>
+<p>Gibt das Viewmodel der Zertifikat Pflege zurück.</p>
+<p><code>def editQualifications(self)</code></p>
+<p>Gibt das Viewmodel der Qualifikationen Pflege zurück.</p>
+<p><code>def editTrainings(self)</code></p>
+<p>Gibt das Viewmodel der Weiterbildungen Pflege zurück.</p>
+<p><code>def viewTraining(self)</code></p>
+<p>Gibt das Viewmodel der Weiterbildungs Detailansicht zurück.</p>
+<p><code>def editTraining(self)</code></p>
+<p>Gibt das Viewmodel der Weiterbildungsbearbeitungsseite zurück.</p>
+<p><code>def addTraining(self)</code></p>
+<p>Gibt das Viewmodel der Seite zum Hinzufügen einer Weiterbildung zurück.</p>
+<p><code>def participationEmployees(self)</code></p>
+<p>Gibt das Viewmodel der Teilnahme Mitarbeiterübersicht zurück.</p>
+<p><code>def participationEmployee(self)</code></p>
+<p>Gibt das Viewmodel der Bearbeitungsseite für Mitarbeiterteilnahmen zurück.</p>
+<p><code>def participationTrainings(self)</code></p>
+<p>Gibt das Viewmodel der Teilnahme Weiterbildungsübersicht zurück.</p>
+<p><code>def participationTraining(self)</code></p>
+<p>Gibt das Viewmodel der Bearbeitungsseite für Weiterbildungsteilnahmen zurück.</p>
+<p><code>def reportEmployees(self)</code></p>
+<p>Gibt das Viewmodel der Mitarbeiterauswertung zurück.</p>
+<p><code>def reportTrainings(self)</code></p>
+<p>Gibt das Viewmodel der Weiterbbildungsauswertung zurück.</p>
+<p><code>def reportCertificates(self)</code></p>
+<p>Gibt das Viewmodel der Zertifikatauswertung zurück.</p>
+<h3 id="training_api.py-qualification_api.py-employee_api.py-und-participation_api.py">training_api.py, qualification_api.py, employee_api.py und participation_api.py</h3>
+<h4 id="zweck-2">Zweck</h4>
+<p>Die APIs ermöglichen es die Tabellen des jeweiligen Models (z.B. Employee oder Training) zu manipulieren. Dies wir benötigt um bequem über JavaScript Änderungen vornehmen zu können.</p>
+<h4 id="aufbau">Aufbau</h4>
+<p>Die API benötigen nur das Jeweilige Database Objekt des Models welches die API repräsentieren soll.</p>
+<h4 id="zusammenwirken-mit-anderen-komponenten-2">Zusammenwirken mit anderen Komponenten</h4>
+<p>Die APIs exposen eigene API Schnittstellen, welche von dem Frontend aufgerufen werden. Somit sind sie von anderen Server Komponenten unabhängig.</p>
+<h4 id="api-2">API</h4>
+<p><code>def __init__(self, database)</code></p>
+<p>Bei dem initialisieren der APIs wird ein Database object benötigt, welches das Model abbildet.</p>
+<p><code>def update(self)</code></p>
+<p>Bei dem update wird über den PostBody als JSON ein Objekt mitgeliefert, welches in der Datenbank aktualisiert werden soll.</p>
+<p><code>def insert(self)</code></p>
+<p>Bei dem insert wird über den PostBody als JSON ein Objekt mitgeliefert, welches in der Datenbank eingepflegt werden soll.</p>
+<p><code>def delete(self, index)</code></p>
+<p>Bei dem delete wird eine Eintrag mit den entsprechenden index aus der Datenbank gelöscht.</p>
+<h3 id="database.py">database.py</h3>
+<h4 id="zweck-3">Zweck</h4>
+<p>Die Klasse bietet eine Schnittstelle zur SQlite Datenbank. Die Datenmodels können per decorator aufgesetzt werden was ein automatisiertes erstellen der Tabellen erlaubt.</p>
+<h4 id="zusammenwirken-mit-anderen-komponenten-3">Zusammenwirken mit anderen Komponenten</h4>
+<p>Instanzen der Datenbanken werden an die API controller übergeben.</p>
+<h4 id="api-3">API</h4>
+<p><code>def __init__(self, model)</code></p>
+<p>Der Contruktor bekommt den Typ des Models übergeben und ruft <code>__createTable()</code> auf.</p>
+<p><code>def __createTable(self)</code></p>
+<p>Erzeugt aus den Metadaten des Models eine passende Tabelle in der Datenbank falls diese noch nicht existiert.</p>
+<p><code>def insert(self, obj)</code></p>
+<p>Fügt ein neues Objekt der Tabelle hinzu.</p>
+<p><code>def update(self, obj)</code></p>
+<p>Aktualisiert die Daten eines bereits existierenden Objektes in der Tabelle.</p>
+<p><code>def get_all(self)</code></p>
+<p>Liefert alle Einträge der Tabelle.</p>
+<p><code>def get_by_index(self, index)</code></p>
+<p>Gibt den Eintrag entsprechend des übergebenen Indexes zurück.</p>
+<p><code>def delete(self, index)</code></p>
+<p>Löscht den Eintrag entsprechend des übergebenen Indexes.</p>
+<p><code>def count(self)</code></p>
+<p>Gibt die Anzahl der Einträge zurück.</p>
+<p><code>def query(self, sql)</code></p>
+<p>Erlaubt das Ausführen eines beliebiegen SQL Queries welches als String übergeben wird.</p>
+<p><code>def deserialize_result(self, result, additional_fields = None)</code></p>
+<p>Erzeugt ein Model/Liste von Models anhand des Rückgabewertes eines queries. Über additional fields können zusätzliche Felder deserialisiert werden, dabei ist zu beachten dass diese Felder im Query erst nach den ursprünglichen Feldern des Models zurückgegeben werden dürfen. Außerdem muss im Query die Reihenfolge der Felder mit denen im Model übereinstimmen.</p>
+<h2 id="datenablage">Datenablage</h2>
+<p>Die Daten der Anwendung werden in einer SQLite Datenbank gespeichert. Diese Datenbank ist in folgende Tabellen unterteilt.</p>
+<ul>
+<li>employee</li>
+<li>employee_owns_certificate</li>
+<li>employee_owns_qualification</li>
+<li>training</li>
+<li>training_grants_qualification</li>
+<li>certificate</li>
+<li>qualification</li>
+<li>participation</li>
+</ul>
+<h2 id="konfiguration">Konfiguration</h2>
+<p>Für die Konfiguration haben wir uns an der Vorlage aus dem ersten Praktikum orientiert und dieser erweitert. Wir haben ein static mapping für das <code>content</code> Verzeichnis, dass dieses über <code>/static/...</code> erreicht werden kann. Wir haben das static mapping nicht wie in der Vorlage der ersten Praktikums auf den root gemappt um somit besser erkennen zu können, welche Inhalte statisch sind und welche nicht. Außerdem haben wir für den statischen Inhalt <code>gzip</code> aktiviert, da wir fanden, dass es ein cooles Feature ist. Wir haben die Application Klasse auf den root gemountet, darüber werden auch alle views erreicht. Außerdem haben wir verschiedene APIs für z.B. Mitarbeiter und Qualifikationen an jeweils <code>/api/MODEL</code> gemountet also z.B. <code>/api/employee/</code>.</p>
+<h2 id="durchführung-und-ergebnis-der-geforderten-prüfungen">Durchführung und Ergebnis der geforderten Prüfungen</h2>
+<h3 id="markup-validierung">Markup Validierung</h3>
+<figure>
+<img src="./htmlreport.png" alt="report" /><figcaption aria-hidden="true">report</figcaption>
+</figure>
+<h3 id="css-validierung">CSS Validierung</h3>
+<p>Wir haben den Source Code von allen CSS-Dateien mit dem <a href="http://jigsaw.w3.org/css-validator/validator">CSS Validator</a> überprüft und sind zu folgenden Ergebnissen gekommen.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Datei</th>
+<th>Fehler</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>main.css</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>layout.css</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>counter.css</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>Die Fehler in der counter.css Datei kommen daher zustande, dass wir sehr neue CSS Regeln nutzen, welche noch nicht in dem CSS3 Standard sind. Die Counter animation wird z.B. nur von Chrome bzw. Chromium unterstützt. Das ist aber nicht schlimm, da Browser welche die Animation nicht unterstützen immer noch alles anzeigen können. Es ist natürlich schade aber nicht das Ende, wenn nicht alle Browser die tolle Animation darstellen können.</p>
+</body>
+</html>

@@ -179,7 +179,7 @@ Instanzen der Datenbanken werden an die API controller übergeben.
 
 `def __init__(self, model)`
 
-Der Contruktor bekommt den Typ des Models übergeben und ruft `__createTable()` auf.
+Der Kontruktor bekommt den Typ des Models übergeben und ruft `__createTable()` auf.
 
 `def __createTable(self)`
 
@@ -211,7 +211,7 @@ Gibt die Anzahl der Einträge zurück.
 
 `def query(self, sql)`
 
-Erlaubt das Ausführen eines beliebiegen SQL Queries welches als String übergeben wird.
+Erlaubt das Ausführen eines beliebigen SQL Queries welches als String übergeben wird.
 
 `def deserialize_result(self, result, additional_fields = None)`
 
@@ -242,7 +242,9 @@ Für die Konfiguration haben wir uns an der Vorlage aus dem ersten Praktikum ori
 
 ### Markup Validierung
 
+Wir haben nur eine HTML Seite, welche von dem Server ausgeliefert wird. Dieser haben wir hier getestet.
 
+![report](./htmlreport.png)
 
 ### CSS Validierung
 
