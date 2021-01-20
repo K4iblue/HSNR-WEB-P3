@@ -44,11 +44,7 @@ Die Auswertungsseiten liefern einen Überblick über aktuelle Teilnahmen inklusi
 
 #### Zweck
 
-Der Application Controller sendet die gerenderten Templates, welche über den Browser direkt abgefragt werden. Der Controller holt sich die Daten aus der Datenbank und befüllt die Templates mit diesen.
-
-#### Aufbau
-
-Der Application Controller hat benötigt Zugriff auf alle Datenbank Instanzen für alle Models.
+Der Application Controller liefert das HTML der Seite.
 
 #### Zusammenwirken mit anderen Komponenten
 
@@ -56,84 +52,85 @@ Der Application Controller wird nicht von anderen Komponenten aufgerufen und lie
 
 #### API
 
-```
-def __init__(
-  self, 
-  employees: Database,
-  trainings: Database, 
-  certificates: Database, 
-  qualifications: Database, 
-  granted_qualifications: Database,
-  owned_certificates: Database, 
-  owned_qualifications: Database,
-  participations: Database):
-```
-        
-Der Constructor benötigt alle Datenbanken.
+`def default(self, *_args, **_kwargs)`
 
-`def index(self)`
+Liefert den HTML Code der Seite egal welche Route aufgerufen wurde.
 
-Gibt den HTML Code der Startseite zurück.
+### api.py
+
+#### Zweck
+
+Liefert die Viewmodels der Templates.
+
+#### Zusammenwirken mit anderen Komponenten
+
+Wird Clientseitig vom Router aufgerufen.
+
+#### API
+
+`def dashboard(self, *_args, **_kwargs)`
+
+Gibt das Viewmodel der Startseite zurück.
 
 `def editEmployees(self)`
     
-Gibt den HTML Code der Mitarbeiter Pflege zurück.
+Gibt das Viewmodel der Mitarbeiter Pflege zurück.
 
 `def viewEmployee(self)`
         
-Gibt den HTML Code der Mitarbeiter Detailansicht zurück.
+Gibt das Viewmodel der Mitarbeiter Detailansicht zurück.
 
 `def editCertificates(self)`
 
-Gibt den HTML Code der Zertifikat Pflege zurück.
+Gibt das Viewmodel der Zertifikat Pflege zurück.
 
 `def editQualifications(self)`
 
-Gibt den HTML Code der Qualifikationen Pflege zurück.
+Gibt das Viewmodel der Qualifikationen Pflege zurück.
 
 `def editTrainings(self)`
 
-Gibt den HTML Code der Weiterbildungen Pflege zurück.
+Gibt das Viewmodel der Weiterbildungen Pflege zurück.
 
 `def viewTraining(self)`
 
-Gibt den HTML Code der Weiterbildungs Detailansicht zurück.
+Gibt das Viewmodel der Weiterbildungs Detailansicht zurück.
 
 `def editTraining(self)`
 
-Gibt den HTML Code der Weiterbildungsbearbeitungsseite zurück.
+Gibt das Viewmodel der Weiterbildungsbearbeitungsseite zurück.
 
 `def addTraining(self)`
 
-Gibt den HTML Code der Seite zum Hinzufügen einer Weiterbildung zurück.
+Gibt das Viewmodel der Seite zum Hinzufügen einer Weiterbildung zurück.
 
 `def participationEmployees(self)`
 
-Gibt den HTML Code der Teilnahme Mitarbeiterübersicht zurück.
+Gibt das Viewmodel der Teilnahme Mitarbeiterübersicht zurück.
 
 `def participationEmployee(self)`
 
-Gibt den HTML Code der Bearbeitungsseite für Mitarbeiterteilnahmen zurück.
+Gibt das Viewmodel der Bearbeitungsseite für Mitarbeiterteilnahmen zurück.
 
 `def participationTrainings(self)`
 
-Gibt den HTML Code der Teilnahme Weiterbildungsübersicht zurück.
+Gibt das Viewmodel der Teilnahme Weiterbildungsübersicht zurück.
 
 `def participationTraining(self)`
 
-Gibt den HTML Code der Bearbeitungsseite für Weiterbildungsteilnahmen zurück.
+Gibt das Viewmodel der Bearbeitungsseite für Weiterbildungsteilnahmen zurück.
 
 `def reportEmployees(self)`
 
-Gibt den HTML Code der Mitarbeiterauswertung zurück.
+Gibt das Viewmodel der Mitarbeiterauswertung zurück.
 
 `def reportTrainings(self)`
 
-Gibt den HTML Code der Weiterbbildungsauswertung zurück.
+Gibt das Viewmodel der Weiterbbildungsauswertung zurück.
 
 `def reportCertificates(self)`
 
-Gibt den HTML Code der Zertifikatauswertung zurück.
+Gibt das Viewmodel der Zertifikatauswertung zurück.
 
 ### training_api.py, qualification_api.py, employee_api.py und participation_api.py
 
@@ -166,86 +163,6 @@ Bei dem insert wird über den PostBody als JSON ein Objekt mitgeliefert, welches
 `def delete(self, index)`
 
 Bei dem delete wird eine Eintrag mit den entsprechenden index aus der Datenbank gelöscht.
-
-### view.py
-
-#### Zweck
-
-Die View Klasse rendert die Mako Templates der einzelnen Seiten dieser Anwendung.
-
-#### Zusammenwirken mit anderen Komponenten
-
-Der Hauptkontroller bezieht den HTML Code der Seiten von dieser Klasse.
-
-#### API
-
-`def __init__(self)`
-        
-Der Constructor erzeugt ein Mako TemplateLookup welches die Templates aus dem templates Verzeichnis bezieht.
-
-`def index(self, data)`
-
-Gibt den HTML Code der Startseite zurück.
-
-`def editEmployees(self, data)`
-    
-Gibt den HTML Code der Mitarbeiter Pflege zurück.
-
-`def viewEmployee(self, data)`
-        
-Gibt den HTML Code der Mitarbeiter Detailansicht zurück.
-
-`def editCertificates(self, data)`
-
-Gibt den HTML Code der Zertifikat Pflege zurück.
-
-`def editQualifications(self, data)`
-
-Gibt den HTML Code der Qualifikationen Pflege zurück.
-
-`def editTrainings(self, data)`
-
-Gibt den HTML Code der Weiterbildungen Pflege zurück.
-
-`def viewTraining(self, data)`
-
-Gibt den HTML Code der Weiterbildungs Detailansicht zurück.
-
-`def editTraining(self, data)`
-
-Gibt den HTML Code der Weiterbildungsbearbeitungsseite zurück.
-
-`def addTraining(self, data)`
-
-Gibt den HTML Code der Seite zum Hinzufügen einer Weiterbildung zurück.
-
-`def participationEmployees(self, data)`
-
-Gibt den HTML Code der Teilnahme Mitarbeiterübersicht zurück.
-
-`def participationEmployee(self, data)`
-
-Gibt den HTML Code der Bearbeitungsseite für Mitarbeiterteilnahmen zurück.
-
-`def participationTrainings(self, data)`
-
-Gibt den HTML Code der Teilnahme Weiterbildungsübersicht zurück.
-
-`def participationTraining(self, data)`
-
-Gibt den HTML Code der Bearbeitungsseite für Weiterbildungsteilnahmen zurück.
-
-`def reportEmployees(self, data)`
-
-Gibt den HTML Code der Mitarbeiterauswertung zurück.
-
-`def reportTrainings(self, data)`
-
-Gibt den HTML Code der Weiterbbildungsauswertung zurück.
-
-`def reportCertificates(self, data)`
-
-Gibt den HTML Code der Zertifikatauswertung zurück.
 
 ### database.py
 
@@ -325,26 +242,7 @@ Für die Konfiguration haben wir uns an der Vorlage aus dem ersten Praktikum ori
 
 ### Markup Validierung
 
-Wir haben den Source Code aller Routen mittels dem [Markdown Validator](https://validator.w3.org/nu/) getestet.
 
-| Route | Fehler |
-| --- | --- |
-| / | 0 |
-| /edit-employees | 0 |
-| /view-employee/MITARBEITER_NUMMER | 0 |
-| /edit-trainings | 0 |
-| /edit-training/TRAINING_NUMMER | 0 |
-| /view-training/TRAINING_NUMMER | 0 |
-| /add-training | 0 |
-| /edit-certificates | 0 |
-| /edit-qualifications | 0 |
-| /participation-employees | 0 |
-| /participation-employee/MITARBEITER_NUMMER | 0 |
-| /participation-trainings | 0 |
-| /participation-training/MITARBEITER_NUMMER | 0 |
-| /report-employees | 0 |
-| /report-trainings | 0 |
-| /report-certificates | 0 |
 
 ### CSS Validierung
 
